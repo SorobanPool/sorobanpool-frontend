@@ -85,7 +85,7 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
           ))}
         </fieldset>
       )}
-      {method === 'NGN' && !nairaPaid && p && pool.ngnPerUsd && <NairaDeposit maxNow={p.maxNow} ngnPerUsd={pool.ngnPerUsd} onReady={() => setNairaPaid(true)} />}
+      {method === 'NGN' && p && pool.ngnPerUsd && <NairaDeposit maxNow={p.maxNow} ngnPerUsd={pool.ngnPerUsd} onReady={() => setNairaPaid(true)} />}
       <button type="button" disabled={busy || done || (method === 'NGN' && !nairaPaid)} onClick={() => void pay()} className="min-h-12 w-full rounded-xl bg-emerald-800 text-lg font-bold text-white disabled:opacity-60">{busy ? t('paying') : t('payNow')}</button>
       {done && <p role="status" className="rounded-lg bg-emerald-50 p-3 font-semibold text-emerald-900">{t('joined')}</p>}
       {error !== null && <ErrorExplainer error={error} onRetry={() => void pay()} />}
