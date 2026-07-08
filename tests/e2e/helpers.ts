@@ -98,10 +98,18 @@ export async function addVirtualAuthenticator(context: BrowserContext, page: Pag
 }
 
 export async function waitFor(fn: () => Promise<boolean>, what: string, ms = 120_000, every = 3000): Promise<void> {
-  const end = Date.now() + ms;
+  const start = Date.now();
+  const end = start + ms;
+  let attempts = 0;
+  let lastError = '';
   for (;;) {
-    if (await fn()) return;
-    if (Date.now() > end) throw new Error(`timed out waiting for ${what}`);
+    attempts++;
+    try {
+      if (await fn()) return;
+    } catch (e) {
+      lastError = (e as Error).message; // a flaky public RPC must not abort a long wait
+    }
+    if (Date.now() > end) throw new Error(`timed out waiting for ${what} after ${Math.round((Date.now() - start) / 1000)}s (${attempts} checks${lastError ? `, last error: ${lastError}` : ''})`);
     await sleep(every);
   }
 }

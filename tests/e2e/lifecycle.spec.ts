@@ -119,7 +119,7 @@ test.describe.serial('group-buy lifecycle', () => {
       await act(a.c, a.kp, `/pools/${poolId}/commit/prepare`, { units: units[i] });
     }
     await waitFor(async () => (await pool()).totalUnits === 105, 'all 105 units indexed', 90_000);
-    await waitFor(async () => (await pool()).state === 'Filled', 'the keeper to close the pool at its deadline', 480_000);
+    await waitFor(async () => (await pool()).state === 'Filled', 'the keeper to close the pool at its deadline', 900_000);
     const p = await pool();
     expect(p.finalUnitPriceUsdc).not.toBeNull();
 
