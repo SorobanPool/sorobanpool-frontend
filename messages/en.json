@@ -210,6 +210,10 @@
     "FEE_TOO_HIGH": {
       "what": "This payment needs more fee than we can cover.",
       "todo": "Contact support."
+    },
+    "unsafe": {
+      "what": "This request looks wrong, so we stopped it.",
+      "todo": "Nothing was charged. Try again, and contact support if it keeps happening."
     }
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 import { create } from 'zustand';
+import { clearApiCache } from '@/components/ServiceWorker';
 import { api, session } from './api';
 import { loadWallet } from './wallet';
 
@@ -47,6 +48,7 @@ export const useSession = create<SessionState>((set, get) => ({
   },
   signOut() {
     session.clear();
+    clearApiCache();
     set({ status: 'anon', me: null });
   },
 }));

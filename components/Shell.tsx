@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { APP_NAME } from '@/lib/config';
+import { ServiceWorker } from '@/components/ServiceWorker';
 import { useSession } from '@/lib/store';
 
 const tabs = [
@@ -20,6 +21,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const status = useSession((s) => s.status);
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-white text-neutral-900">
+      <ServiceWorker />
       <header className="flex h-14 items-center justify-between border-b border-neutral-200 px-4">
         <Link href="/" className="text-lg font-bold text-emerald-800">{APP_NAME}</Link>
         {status === 'anon' && <Link href="/onboarding" className="min-h-12 content-center rounded-lg px-3 text-sm font-semibold text-emerald-800 underline">{'Sign in'}</Link>}
