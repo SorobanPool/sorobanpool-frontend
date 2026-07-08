@@ -9,6 +9,8 @@ pnpm lint && pnpm exec tsc --noEmit && pnpm build
 ```
 Languages: `en`, `pcm` (cookie `locale`). Product name lives in `lib/config.ts`. Status: M3 (trader and organizer PWA), verified end to end on Stellar testnet.
 
+The product and architecture brief (source of truth): [sorobanpool-contracts/docs/brief.md](https://github.com/SorobanPool/sorobanpool-contracts/blob/main/docs/brief.md). Sibling repos: [contracts](https://github.com/SorobanPool/sorobanpool-contracts), [backend](https://github.com/SorobanPool/sorobanpool-backend), [frontend](https://github.com/SorobanPool/sorobanpool-frontend).
+
 ## Verify
 ```
 pnpm lint && pnpm typecheck && pnpm test           # 47 tests: components, i18n parity, pricing parity vs the contracts, signing guard, axe
