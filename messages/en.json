@@ -1,6 +1,211 @@
 {
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "organize": "Organize",
+    "settings": "Settings"
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "share": "Share",
+    "close": "Close",
+    "unitsCount": "{count, plural, one {# unit} other {# units}}",
+    "members": "{count, plural, one {# member} other {# members}}",
+    "offline": "You are offline. Showing what we last saw.",
+    "learnMore": "How does this work?",
+    "signInFirst": "Please sign in first."
+  },
+  "trust": {
+    "message": "Your money is held safely. The supplier is paid only after the goods arrive. If the group doesn't fill, you get everything back automatically."
+  },
   "home": {
-    "tagline": "Buy together. Pay on delivery.",
-    "trust": "Your money is held safely. The supplier is paid only after the goods arrive. If the group doesn't fill, you get everything back automatically."
+    "title": "Buy together. Pay on delivery.",
+    "tagline": "Join traders in your market to buy in bulk at wholesale prices.",
+    "signIn": "Get started",
+    "explore": "See open group buys",
+    "myPools": "My group buys",
+    "noPools": "You have not joined a group buy yet.",
+    "readyForPickup": "Ready for pickup"
+  },
+  "onboarding": {
+    "title": "Create your account",
+    "phoneLabel": "Your phone number",
+    "phoneHelp": "We will send a 6-digit code by SMS.",
+    "sendCode": "Send code",
+    "codeLabel": "6-digit code",
+    "verify": "Verify",
+    "badPhone": "Enter a Nigerian mobile number, for example 0803 123 4567.",
+    "nameLabel": "Your name",
+    "marketLabel": "Your market",
+    "profile": "A little about you",
+    "walletTitle": "Set up your wallet",
+    "walletBody": "We create a secure wallet on this phone. Only you can approve payments, with your fingerprint, face or PIN.",
+    "walletCreate": "Create my wallet",
+    "walletActivating": "Activating your account…",
+    "backupTitle": "Keep a backup",
+    "backupBody": "If you lose this phone you need this backup to get your money back. Write it down and keep it private.",
+    "testMoneyTitle": "Get test money (testing only)",
+    "testMoneyBody": "This is a test version. We add practice money so you can try a payment.",
+    "testMoneyAction": "Add practice money",
+    "finished": "You are all set!",
+    "goExplore": "Find a group buy"
+  },
+  "explore": {
+    "title": "Open group buys",
+    "empty": "No open group buys right now. Check back soon.",
+    "from": "From {price} per unit",
+    "minimum": "Minimum {count} units",
+    "offers": "Offers",
+    "openPools": "Open pools"
+  },
+  "pool": {
+    "price": "Price now",
+    "perUnit": "{price} per unit",
+    "tiers": "Price breaks",
+    "tierNow": "You are here",
+    "toNext": "{count} more units for {price} per unit",
+    "progress": "{count} of {moq} units to start",
+    "toGo": "{count} units to go",
+    "reached": "Minimum reached",
+    "closes": "Closes in",
+    "closed": "Closed for joining",
+    "hub": "Pickup place",
+    "pickupWindow": "Pickup time",
+    "organizer": "Organized by a trader in your market",
+    "join": "Join this group buy",
+    "addMore": "Add more units",
+    "youHave": "You joined with {count} units",
+    "unitsLabel": "How many units?",
+    "maxNow": "Most you pay now",
+    "expectedRefund": "Refund if more people join",
+    "expectedFinal": "Expected final price",
+    "naira": "About {amount}",
+    "indicative": "Naira amounts are estimates. You pay the current price now; if the group reaches a better price, the difference comes back to you automatically.",
+    "payNow": "Pay now",
+    "paying": "Confirming with your phone…",
+    "confirmTitle": "Approve this payment",
+    "confirmBody": "Press confirm to approve. Your money stays in escrow until the goods arrive.",
+    "joined": "You are in! We will tell you when the price drops.",
+    "ifFails": "If it doesn't fill or the supplier fails to deliver, you are refunded automatically.",
+    "rights": "If something is wrong with the goods you can report a problem within 48 hours of delivery.",
+    "share": "Share on WhatsApp",
+    "shareText": "Join our group buy: {product}. Price now {price} per unit. {link}",
+    "pickup": "I've collected",
+    "pickupDone": "Thanks! Collected.",
+    "pickupReady": "Your goods are ready: collect {count} units.",
+    "refund": "Claim my refund",
+    "refundDone": "Refund received.",
+    "refundDue": "You have a refund waiting.",
+    "yourShare": "Your share",
+    "status": "Status",
+    "timeline": {
+      "joining": "Joining",
+      "filled": "Group is full",
+      "accepted": "Supplier accepted",
+      "onTheWay": "On the way",
+      "arrived": "Arrived at pickup place",
+      "collected": "Collected",
+      "done": "Done",
+      "failed": "Refunded"
+    },
+    "stateNote": {
+      "Expired": "Not enough people joined. Everyone is being refunded in full.",
+      "Failed": "The order did not go through. Everyone is refunded in full.",
+      "Cancelled": "This group buy was cancelled. Everyone is refunded in full."
+    },
+    "pickupReadyShort": "Your goods are ready. The organizer will tell you how many units you get.",
+    "approved": "Payment approved.",
+    "perUnitLabel": "per unit",
+    "nextBreakShort": "{count} more units and the price drops"
+  },
+  "organize": {
+    "title": "Organize a group buy",
+    "intro": "Pick an offer, set a deadline and a pickup place. Share the link with traders in your market.",
+    "notOrganizer": "You are not an organizer yet. Ask support to approve you.",
+    "step1": "Choose an offer",
+    "step2": "Deadline",
+    "step3": "Pickup place and time",
+    "step4": "Your fee",
+    "step5": "Review",
+    "deadlineLabel": "Closes on",
+    "deadlineHelp": "Up to 7 days from now.",
+    "hubAddress": "Pickup address",
+    "hubContact": "Contact phone at the pickup place",
+    "windowFrom": "Pickup from",
+    "windowTo": "Pickup until",
+    "feeLabel": "Organizer fee (%)",
+    "feeHelp": "Optional, up to 1%. Members see it before they pay.",
+    "restrict": "Only members of my market",
+    "create": "Create group buy",
+    "creating": "Creating…",
+    "created": "Your group buy is live!",
+    "shareNow": "Share the link now",
+    "myPools": "My organized pools",
+    "delivery": {
+      "title": "Confirm delivery",
+      "intro": "Count the goods when they arrive and take photos. This is what pays the supplier.",
+      "received": "Units received",
+      "ordered": "Units ordered: {count}",
+      "photos": "Photos of the goods",
+      "addPhoto": "Take or choose a photo",
+      "short": "{count} units short. Members are refunded for the missing goods.",
+      "submit": "Confirm delivery",
+      "success": "Delivery confirmed."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "english": "English",
+    "pidgin": "Pidgin",
+    "wallet": "My wallet",
+    "backup": "Show my backup",
+    "backupWarn": "Anyone with this can take your money. Never share it.",
+    "signOut": "Sign out",
+    "help": "Help"
+  },
+  "errors": {
+    "generic": {
+      "what": "Something went wrong.",
+      "todo": "Please try again. If it keeps happening, contact support."
+    },
+    "network": {
+      "what": "We could not reach the server.",
+      "todo": "Check your connection and try again."
+    },
+    "declined": {
+      "what": "You did not approve the payment.",
+      "todo": "Nothing was charged. Try again when you are ready."
+    },
+    "OTP_WRONG": {
+      "what": "That code is not right.",
+      "todo": "Check the SMS and try again."
+    },
+    "OTP_EXPIRED": {
+      "what": "That code has expired.",
+      "todo": "Ask for a new code."
+    },
+    "OTP_LOCKED": {
+      "what": "Too many wrong tries.",
+      "todo": "Ask for a new code."
+    },
+    "OTP_RATE_LIMITED": {
+      "what": "Too many codes requested.",
+      "todo": "Wait a few minutes and try again."
+    },
+    "INVALID_PHONE": {
+      "what": "That phone number is not valid.",
+      "todo": "Use a Nigerian mobile number."
+    },
+    "FEE_TOO_HIGH": {
+      "what": "This payment needs more fee than we can cover.",
+      "todo": "Contact support."
+    }
   }
 }

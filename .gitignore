@@ -3,3 +3,7 @@
 node_modules/
 .next/
 *.swp
+tsconfig.tsbuildinfo
+test-results/
+playwright-report/
+.evidence/

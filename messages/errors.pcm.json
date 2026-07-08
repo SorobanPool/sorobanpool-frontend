@@ -1,0 +1,318 @@
+{
+  "100": {
+    "what": "Na only admin fit do this one.",
+    "todo": "Talk to support if you think say mistake dey."
+  },
+  "101": {
+    "what": "Na only admin or guardian fit do this.",
+    "todo": "Talk to support."
+  },
+  "102": {
+    "what": "These settings no correct.",
+    "todo": "Check the values and try again."
+  },
+  "103": {
+    "what": "These settings pass the safety limit.",
+    "todo": "Use smaller values."
+  },
+  "104": {
+    "what": "Dem never finish to set up the system.",
+    "todo": "Try again later or talk to support."
+  },
+  "105": {
+    "what": "Dem never set guardian.",
+    "todo": "Talk to support."
+  },
+  "200": {
+    "what": "You don already register for this role.",
+    "todo": "You fit continue."
+  },
+  "201": {
+    "what": "You never register yet.",
+    "todo": "Finish your sign-up first."
+  },
+  "202": {
+    "what": "Dem never approve this verifier.",
+    "todo": "Talk to support."
+  },
+  "203": {
+    "what": "Na only admin fit do this one.",
+    "todo": "Talk to support."
+  },
+  "204": {
+    "what": "Dem no allow you do this one.",
+    "todo": "Talk to support if you think say mistake dey."
+  },
+  "205": {
+    "what": "The verification level no correct.",
+    "todo": "Talk to support."
+  },
+  "206": {
+    "what": "Your account status no allow this.",
+    "todo": "Check your account for Settings or talk to support."
+  },
+  "300": {
+    "what": "The system never ready.",
+    "todo": "Try again small time."
+  },
+  "301": {
+    "what": "Dem don pause new activity for now. Your money safe.",
+    "todo": "Try again later."
+  },
+  "302": {
+    "what": "The offer details no correct for pool.",
+    "todo": "Check the offer and try again."
+  },
+  "303": {
+    "what": "Dem no allow this kind product yet.",
+    "todo": "Choose another offer."
+  },
+  "304": {
+    "what": "The organizer or supplier never verify.",
+    "todo": "Choose organizer or supplier wey don verify."
+  },
+  "305": {
+    "what": "The closing time no correct.",
+    "todo": "Pick time wey dey inside 7 days from now."
+  },
+  "306": {
+    "what": "The organizer fee too much.",
+    "todo": "Choose smaller fee."
+  },
+  "307": {
+    "what": "This pool big pass wetin your level allow.",
+    "todo": "Choose smaller offer or ask support to increase your limit."
+  },
+  "308": {
+    "what": "We no see this pool.",
+    "todo": "Check the link and try again."
+  },
+  "309": {
+    "what": "This step no dey available now.",
+    "todo": "Refresh the page to see wetin dey happen."
+  },
+  "310": {
+    "what": "This pool don close for joining.",
+    "todo": "Find another open pool."
+  },
+  "311": {
+    "what": "E never reach time to do this.",
+    "todo": "Wait till the closing time reach."
+  },
+  "312": {
+    "what": "Choose at least 1 unit.",
+    "todo": "Pick how many units you want."
+  },
+  "313": {
+    "what": "You no fit join this pool.",
+    "todo": "Finish your sign-up or choose another pool."
+  },
+  "314": {
+    "what": "This pool na only for people for one market.",
+    "todo": "Choose pool for your own market."
+  },
+  "315": {
+    "what": "Na more units pass wetin one person fit take for this offer.",
+    "todo": "Choose fewer units."
+  },
+  "316": {
+    "what": "One person no fit take that big share of the pool.",
+    "todo": "Choose fewer units make others fit join."
+  },
+  "317": {
+    "what": "Units no reach for this pool again.",
+    "todo": "Choose fewer units."
+  },
+  "318": {
+    "what": "This pass the amount your account level allow.",
+    "todo": "Verify your account to increase your limit, or choose fewer units."
+  },
+  "319": {
+    "what": "This pool don get the most members wey e fit take.",
+    "todo": "Find another pool."
+  },
+  "320": {
+    "what": "You don already join this pool.",
+    "todo": "Use Add more units instead."
+  },
+  "321": {
+    "what": "You never join this pool.",
+    "todo": "Join the pool first."
+  },
+  "322": {
+    "what": "E don too close to closing time to comot.",
+    "todo": "You fit stay for the pool; dem go return any refund by themselves."
+  },
+  "323": {
+    "what": "If you comot, the price go change for everybody, so dem no allow am.",
+    "todo": "Stay for the pool, or ask the organizer."
+  },
+  "324": {
+    "what": "The pool never reach the minimum.",
+    "todo": "Wait make more people join."
+  },
+  "325": {
+    "what": "Na only organizer fit do this one.",
+    "todo": "Ask the organizer."
+  },
+  "326": {
+    "what": "Na only supplier fit do this one.",
+    "todo": "Ask the supplier."
+  },
+  "327": {
+    "what": "Na only admin fit do this one.",
+    "todo": "Talk to support."
+  },
+  "328": {
+    "what": "Dem no fit cancel this pool again.",
+    "todo": "Talk to support if you need help."
+  },
+  "329": {
+    "what": "The time to accept this order don pass.",
+    "todo": "Dem go return everybody money by themselves."
+  },
+  "330": {
+    "what": "Supplier still get time to accept.",
+    "todo": "Wait till the acceptance time end."
+  },
+  "331": {
+    "what": "Dem don off advance payment.",
+    "todo": "Accept without advance."
+  },
+  "332": {
+    "what": "The advance high pass wetin your level allow.",
+    "todo": "Choose smaller advance."
+  },
+  "333": {
+    "what": "The delivery deadline never reach.",
+    "todo": "Wait till the deadline reach."
+  },
+  "334": {
+    "what": "That count pass wetin dem order.",
+    "todo": "Count again and put the correct number."
+  },
+  "335": {
+    "what": "E never reach time for members to confirm delivery by themselves.",
+    "todo": "Wait for organizer, or try later."
+  },
+  "336": {
+    "what": "You don already confirm this one.",
+    "todo": "Nothing remain to do."
+  },
+  "337": {
+    "what": "Dem still dey finish to share the goods.",
+    "todo": "Try again small time."
+  },
+  "338": {
+    "what": "E never reach time to pay out.",
+    "todo": "Dem go pay after the confirmation time, or when enough members confirm say dem collect."
+  },
+  "339": {
+    "what": "Nothing dey to refund now.",
+    "todo": "Check your history."
+  },
+  "340": {
+    "what": "Dem no allow this action from here.",
+    "todo": "Talk to support."
+  },
+  "341": {
+    "what": "That claim big pass the value of the goods.",
+    "todo": "Reduce the units for your report."
+  },
+  "342": {
+    "what": "The time to report problem don end.",
+    "todo": "Talk to support if dem no deliver the goods."
+  },
+  "343": {
+    "what": "The amount too big to process.",
+    "todo": "Choose smaller amount."
+  },
+  "344": {
+    "what": "This pool never finish.",
+    "todo": "Wait till e complete."
+  },
+  "345": {
+    "what": "Supplier no fit join im own pool.",
+    "todo": "Use another account."
+  },
+  "400": {
+    "what": "The system never ready.",
+    "todo": "Try again small time."
+  },
+  "401": {
+    "what": "Na only people wey dey this pool fit report problem.",
+    "todo": "Join the pool first."
+  },
+  "402": {
+    "what": "The units for your report no correct.",
+    "todo": "Put number wey you really receive or order."
+  },
+  "403": {
+    "what": "We no see this report.",
+    "todo": "Check and try again."
+  },
+  "404": {
+    "what": "This report don already settle.",
+    "todo": "Nothing remain to do."
+  },
+  "405": {
+    "what": "Na only approved arbiter fit decide this one.",
+    "todo": "Talk to support."
+  },
+  "406": {
+    "what": "You no fit decide report for pool wey you join.",
+    "todo": "Pick another report."
+  },
+  "407": {
+    "what": "The time to decide this report don pass.",
+    "todo": "Dem go refund automatically."
+  },
+  "408": {
+    "what": "The deciding time never end.",
+    "todo": "Wait till arbiter time finish."
+  },
+  "409": {
+    "what": "That decision no correct.",
+    "todo": "Check the amounts and try again."
+  },
+  "410": {
+    "what": "You don add the most evidence wey dem allow.",
+    "todo": "Remove the one wey no important before you add more."
+  },
+  "411": {
+    "what": "The amount too big to process.",
+    "todo": "Choose smaller amount."
+  },
+  "500": {
+    "what": "That amount no correct.",
+    "todo": "Put amount wey pass zero."
+  },
+  "501": {
+    "what": "You no get that much free bond.",
+    "todo": "Choose smaller amount."
+  },
+  "502": {
+    "what": "Dem no allow this action from here.",
+    "todo": "Talk to support."
+  },
+  "503": {
+    "what": "The system never ready.",
+    "todo": "Try again small time."
+  },
+  "504": {
+    "what": "That release pass wetin dem hold.",
+    "todo": "Talk to support."
+  },
+  "600": {
+    "what": "Dem no allow this action from here.",
+    "todo": "Talk to support."
+  },
+  "601": {
+    "what": "We no recognise this record type.",
+    "todo": "Talk to support."
+  },
+  "602": {
+    "what": "The system never ready.",
+    "todo": "Try again small time."
+  }
+}

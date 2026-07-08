@@ -1,6 +1,211 @@
 {
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "organize": "Organize",
+    "settings": "Settings"
+  },
+  "common": {
+    "loading": "E dey load…",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "share": "Share",
+    "close": "Close",
+    "unitsCount": "{count} unit(s)",
+    "members": "{count} member(s)",
+    "offline": "You no get network. Na the last thing wey we see dey show.",
+    "learnMore": "How e dey work?",
+    "signInFirst": "Abeg sign in first."
+  },
+  "trust": {
+    "message": "Your money dey safe. Supplier go only collect pay after goods don reach. If people no join reach target, we go return all your money back by itself."
+  },
   "home": {
-    "tagline": "Buy together. Pay when goods reach.",
-    "trust": "Your money dey safe. Supplier go only collect pay after goods don reach. If people no join reach target, we go return all your money back sharp sharp."
+    "title": "Buy together. Pay when goods reach.",
+    "tagline": "Join traders for your market buy goods for bulk for wholesale price.",
+    "signIn": "Start here",
+    "explore": "See group buys wey dey open",
+    "myPools": "My group buys",
+    "noPools": "You never join any group buy yet.",
+    "readyForPickup": "Ready for pickup"
+  },
+  "onboarding": {
+    "title": "Create your account",
+    "phoneLabel": "Your phone number",
+    "phoneHelp": "We go send 6-digit code give you by SMS.",
+    "sendCode": "Send code",
+    "codeLabel": "6-digit code",
+    "verify": "Verify",
+    "badPhone": "Put Nigerian phone number, like 0803 123 4567.",
+    "nameLabel": "Your name",
+    "marketLabel": "Your market",
+    "profile": "Small tori about you",
+    "walletTitle": "Set up your wallet",
+    "walletBody": "We go create secure wallet for this phone. Na only you fit approve payment, with your fingerprint, face or PIN.",
+    "walletCreate": "Create my wallet",
+    "walletActivating": "We dey activate your account…",
+    "backupTitle": "Keep backup",
+    "backupBody": "If you lose this phone, you go need this backup to collect your money. Write am down and keep am private.",
+    "testMoneyTitle": "Collect test money (for testing only)",
+    "testMoneyBody": "This na test version. We go add practice money make you fit try payment.",
+    "testMoneyAction": "Add practice money",
+    "finished": "Everything don set!",
+    "goExplore": "Find group buy"
+  },
+  "explore": {
+    "title": "Group buys wey dey open",
+    "empty": "No group buy dey open now. Come back soon.",
+    "from": "From {price} per unit",
+    "minimum": "Minimum {count} units",
+    "offers": "Offers",
+    "openPools": "Open pools"
+  },
+  "pool": {
+    "price": "Price now",
+    "perUnit": "{price} per unit",
+    "tiers": "Price breaks",
+    "tierNow": "You dey here",
+    "toNext": "{count} more units for {price} per unit",
+    "progress": "{count} of {moq} units to start",
+    "toGo": "{count} units remain",
+    "reached": "Minimum don reach",
+    "closes": "E go close in",
+    "closed": "E don close for joining",
+    "hub": "Where to collect",
+    "pickupWindow": "Pickup time",
+    "organizer": "Trader for your market organize am",
+    "join": "Join this group buy",
+    "addMore": "Add more units",
+    "youHave": "You join with {count} units",
+    "unitsLabel": "How many units?",
+    "maxNow": "Most you go pay now",
+    "expectedRefund": "Refund if more people join",
+    "expectedFinal": "Expected final price",
+    "naira": "About {amount}",
+    "indicative": "Naira amount na estimate. You go pay the price wey dey now; if the group reach better price, dem go return the difference give you by itself.",
+    "payNow": "Pay now",
+    "paying": "We dey confirm with your phone…",
+    "confirmTitle": "Approve this payment",
+    "confirmBody": "Press confirm to approve. Your money go stay for escrow till goods reach.",
+    "joined": "You don join! We go tell you when price drop.",
+    "ifFails": "If e no fill or supplier no deliver, dem go refund you by itself.",
+    "rights": "If anything wrong with the goods, you fit report problem within 48 hours after delivery.",
+    "share": "Share for WhatsApp",
+    "shareText": "Join our group buy: {product}. Price now na {price} per unit. {link}",
+    "pickup": "I don collect",
+    "pickupDone": "Thank you! You don collect.",
+    "pickupReady": "Your goods don ready: come collect {count} units.",
+    "refund": "Collect my refund",
+    "refundDone": "You don collect your refund.",
+    "refundDue": "Refund dey wait for you.",
+    "yourShare": "Your share",
+    "status": "Status",
+    "timeline": {
+      "joining": "Dem dey join",
+      "filled": "Group don full",
+      "accepted": "Supplier don accept",
+      "onTheWay": "E dey road",
+      "arrived": "E don reach pickup place",
+      "collected": "Dem don collect",
+      "done": "E don finish",
+      "failed": "Dem don refund"
+    },
+    "stateNote": {
+      "Expired": "People no reach. Dem dey refund everybody full.",
+      "Failed": "The order no work. Dem go refund everybody full.",
+      "Cancelled": "Dem cancel this group buy. Dem go refund everybody full."
+    },
+    "pickupReadyShort": "Your goods don ready. Organizer go tell you how many units you go collect.",
+    "approved": "Payment don approve.",
+    "perUnitLabel": "per unit",
+    "nextBreakShort": "{count} more units and price go drop"
+  },
+  "organize": {
+    "title": "Organize group buy",
+    "intro": "Pick offer, set deadline and pickup place. Share the link with traders for your market.",
+    "notOrganizer": "You never be organizer yet. Ask support make dem approve you.",
+    "step1": "Choose offer",
+    "step2": "Deadline",
+    "step3": "Pickup place and time",
+    "step4": "Your fee",
+    "step5": "Review",
+    "deadlineLabel": "E go close on",
+    "deadlineHelp": "Up to 7 days from now.",
+    "hubAddress": "Pickup address",
+    "hubContact": "Phone for the pickup place",
+    "windowFrom": "Pickup from",
+    "windowTo": "Pickup until",
+    "feeLabel": "Organizer fee (%)",
+    "feeHelp": "Optional, up to 1%. Members go see am before dem pay.",
+    "restrict": "Only people for my market",
+    "create": "Create group buy",
+    "creating": "We dey create…",
+    "created": "Your group buy don start!",
+    "shareNow": "Share the link now",
+    "myPools": "Pools wey I organize",
+    "delivery": {
+      "title": "Confirm delivery",
+      "intro": "Count the goods when dem reach and take photo. Na this one go pay supplier.",
+      "received": "Units wey reach",
+      "ordered": "Units wey dem order: {count}",
+      "photos": "Photo of the goods",
+      "addPhoto": "Take or choose photo",
+      "short": "{count} units no reach. Dem go refund members for the missing goods.",
+      "submit": "Confirm delivery",
+      "success": "Delivery don confirm."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "english": "English",
+    "pidgin": "Pidgin",
+    "wallet": "My wallet",
+    "backup": "Show my backup",
+    "backupWarn": "Anybody wey get this one fit carry your money. No share am.",
+    "signOut": "Sign out",
+    "help": "Help"
+  },
+  "errors": {
+    "generic": {
+      "what": "Something don go wrong.",
+      "todo": "Abeg try again. If e continue, talk to support."
+    },
+    "network": {
+      "what": "We no fit reach the server.",
+      "todo": "Check your network and try again."
+    },
+    "declined": {
+      "what": "You no approve the payment.",
+      "todo": "Dem no collect anything. Try again when you ready."
+    },
+    "OTP_WRONG": {
+      "what": "That code no correct.",
+      "todo": "Check the SMS and try again."
+    },
+    "OTP_EXPIRED": {
+      "what": "That code don expire.",
+      "todo": "Ask for new code."
+    },
+    "OTP_LOCKED": {
+      "what": "Too many wrong try.",
+      "todo": "Ask for new code."
+    },
+    "OTP_RATE_LIMITED": {
+      "what": "Too many code you don request.",
+      "todo": "Wait small minutes and try again."
+    },
+    "INVALID_PHONE": {
+      "what": "That phone number no correct.",
+      "todo": "Use Nigerian phone number."
+    },
+    "FEE_TOO_HIGH": {
+      "what": "This payment need more fee pass wetin we fit cover.",
+      "todo": "Talk to support."
+    }
   }
 }

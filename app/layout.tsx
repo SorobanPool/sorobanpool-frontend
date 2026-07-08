@@ -1,35 +1,30 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale } from "next-intl/server";
-import { APP_NAME, TAGLINE } from "@/lib/config";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata, Viewport } from 'next';
+import './globals.css';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
+import { Providers } from '@/components/Providers';
+import { Shell } from '@/components/Shell';
+import { APP_NAME, TAGLINE } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: APP_NAME,
   description: `Group buying for market traders. ${TAGLINE}.`,
-  manifest: "/manifest.webmanifest",
+  manifest: '/manifest.webmanifest',
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
+// Light theme by default: it reads best in sunlight on a phone.
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#0b6b3a' };
+
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const locale = await getLocale();
   return (
-    <html
-      lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+    <html lang={locale === 'pcm' ? 'en-NG' : 'en'} className="h-full antialiased">
+      <body className="min-h-full bg-neutral-50">
+        <NextIntlClientProvider>
+          <Providers>
+            <Shell>{children}</Shell>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
