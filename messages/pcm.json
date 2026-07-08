@@ -314,6 +314,7 @@
     "preview": "Buyer go get {buyer}. Supplier go get {supplier}.",
     "resolve": "Record decision",
     "resolved": "Dem don record the decision.",
-    "needWallet": "Bind your wallet for onboarding first."
+    "needWallet": "Bind your wallet for onboarding first.",
+    "notArbiter": "This place na for arbiters. Ask support if you suppose get access."
   }
 }

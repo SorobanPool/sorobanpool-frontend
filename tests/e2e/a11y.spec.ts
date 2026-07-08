@@ -24,7 +24,7 @@ for (const locale of ['en', 'pcm'] as const) {
     const r = await c.call('/auth/otp/request', { phone: c.phone });
     const v = await c.call('/auth/otp/verify', { phone: c.phone, code: r.devCode });
     await page.addInitScript((t) => localStorage.setItem('sp.refresh', t), v.refreshToken as string);
-    for (const path of ['/', '/explore', '/organize', '/settings']) {
+    for (const path of ['/', '/explore', '/organize', '/settings', '/supplier', '/supplier/offers/new', '/arbiter']) {
       await page.goto(path);
       await expect(page.getByRole('main')).toBeVisible();
       await page.waitForLoadState('networkidle');
