@@ -53,3 +53,13 @@ describe('contract error messages', () => {
     expect(errorKeys(undefined).todo).toBe('errors.generic.todo');
   });
 });
+
+import { percent, shortAddress } from './format';
+describe('admin display helpers', () => {
+  it('formats rates and shortens addresses', () => {
+    expect(percent(0.0321)).toBe('3.2%');
+    expect(percent(0)).toBe('0.0%');
+    expect(shortAddress('GABCDEFGHIJKLMNOPQRSTUVWXYZ')).toBe('GABCD…WXYZ');
+    expect(shortAddress('short')).toBe('short');
+  });
+});
