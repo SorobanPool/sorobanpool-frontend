@@ -156,6 +156,7 @@ export default function Supplier() {
             {pools.data?.filter((p) => p.supplier === me?.walletAddress).length === 0 && <p className="text-neutral-700">{t('noPools')}</p>}
             <ul className="space-y-3">{pools.data?.filter((p) => p.supplier === me?.walletAddress).map((p) => <PoolRow key={p.id} card={p} />)}</ul>
           </section>
+          <Link href="/supplier/statement" className="flex min-h-12 items-center justify-center rounded-xl border border-neutral-400 px-4 font-semibold">{t('statementLink')}</Link>
           <BondPanel />
         </>
       )}

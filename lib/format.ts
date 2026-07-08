@@ -45,3 +45,9 @@ export function countdown(deadline: Date | string | number, now: number = Date.n
   const s = Math.floor(ms / 1000);
   return { done: ms === 0, days: Math.floor(s / 86400), hours: Math.floor((s % 86400) / 3600), minutes: Math.floor((s % 3600) / 60), seconds: s % 60 };
 }
+
+/** 0.0321 -> "3.2%". */
+export const percent = (ratio: number, digits = 1): string => `${(ratio * 100).toFixed(digits)}%`;
+
+/** Long addresses are unreadable on a phone: GABCD…WXYZ. */
+export const shortAddress = (a: string): string => (a.length > 14 ? `${a.slice(0, 5)}…${a.slice(-4)}` : a);

@@ -81,3 +81,18 @@ export interface SupplierProfile {
   businessName: string;
   kybStatus: 'PENDING' | 'APPROVED' | 'REJECTED';
 }
+
+export interface RiskOverview {
+  gmv: string;
+  escrowHeld: string;
+  poolsByState: Record<string, number>;
+  failureRate7d: number;
+  dispute7d: { disputes: number; deliveredPools: number; rate: number };
+  bySupplier: { supplier: string; pools: number; disputes: number; disputeRate: number }[];
+  pairs: { organizer: string; supplier: string; pools: number; shareOfOrganizer: number }[];
+  flags: { kind: string; message: string; subject?: string }[];
+  generatedAt: string;
+}
+
+export interface StatementLine { poolId: string; product: string; settledAt: string; unitsDelivered: number; gross: string; platformFee: string; organizerFee: string; net: string }
+export interface Statement { lines: StatementLine[]; total: { gross: string; platformFee: string; organizerFee: string; net: string } }
