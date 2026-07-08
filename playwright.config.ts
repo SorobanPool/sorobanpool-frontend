@@ -1,35 +1,30 @@
-import { defineConfig, devices } from "@playwright/test"
+import { defineConfig, devices } from '@playwright/test';
 
-const landingAudit = process.env.PLAYWRIGHT_LANDING_AUDIT === "1"
-const recordMotionEvidence = process.env.PLAYWRIGHT_MOTION_EVIDENCE === "1"
+const API = process.env.E2E_API ?? 'http://localhost:3100';
+const WEB = process.env.E2E_WEB ?? 'http://localhost:3101';
 
+/**
+ * Needs a funded testnet key: SPONSOR_SECRET=S... (it sponsors fees and acts as attestor and faucet).
+ * Build the app against the dev API first:  NEXT_PUBLIC_API_URL=http://localhost:3100 pnpm build
+ */
 export default defineConfig({
-  testDir: "./e2e",
-  fullyParallel: true,
-  reporter: "list",
-  use: {
-    baseURL: "http://127.0.0.1:3000",
-    trace: "on-first-retry",
-    video: recordMotionEvidence ? "on" : "off",
-  },
-  projects: [
+  testDir: './tests/e2e',
+  timeout: 15 * 60_000,
+  expect: { timeout: 20_000 },
+  workers: 1,
+  retries: 0,
+  reporter: [['list']],
+  use: { baseURL: WEB, trace: 'retain-on-failure', screenshot: 'only-on-failure' },
+  projects: [{ name: 'mobile', use: { ...devices['Pixel 5'] } }],
+  webServer: [
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
-      testIgnore: /mobile-nav\.spec\.ts/,
+      command: 'node dist/dev/dev-server.js',
+      cwd: '../sorobanpool-backend',
+      url: `${API}/v1/health`,
+      reuseExistingServer: true,
+      timeout: 120_000,
+      env: { PORT: '3100', PUBLIC_APP_URL: WEB, SPONSOR_SECRET: process.env.SPONSOR_SECRET ?? '' },
     },
-    {
-      name: "mobile-chromium",
-      use: { ...devices["Pixel 5"] },
-      testMatch: /mobile-nav\.spec\.ts/,
-    },
+    { command: 'pnpm exec next start -p 3101', url: WEB, reuseExistingServer: true, timeout: 120_000 },
   ],
-  webServer: {
-    command: landingAudit
-      ? "bun run --cwd apps/web build -- --mode testnet && bun run --cwd apps/web preview -- --host 127.0.0.1 --port 3000"
-      : "bun run --cwd apps/web dev -- --host 127.0.0.1 --mode testnet",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI && !landingAudit,
-    timeout: landingAudit ? 240_000 : 120_000,
-  },
-})
+});

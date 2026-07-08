@@ -1,0 +1,3 @@
+# 0002 PWA caching rules and the performance budget
+
+The service worker caches static assets, navigations (with an offline fallback) and read-only pool/offer GETs. It never caches auth, wallets, transactions, uploads, evidence, admin or the signed-in profile, and the cached pool views are cleared on sign-out because they contain the user's own commitment. Lighthouse (mobile preset) on the public pool page: performance 0.98, LCP 1.7 s, TBT 150 ms, CLS 0, 162 KB JavaScript transferred against the 170 KB budget. The margin is thin: the Stellar SDK is lazy-loaded at signing time and must stay out of the initial bundle.
