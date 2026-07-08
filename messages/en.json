@@ -157,7 +157,11 @@
       "short": "{count} units short. Members are refunded for the missing goods.",
       "submit": "Confirm delivery",
       "success": "Delivery confirmed."
-    }
+    },
+    "activate": "Activate my organizer account",
+    "activating": "Activating…",
+    "activated": "Your organizer account is active.",
+    "activateHelp": "Do this once after support approves you."
   },
   "settings": {
     "title": "Settings",

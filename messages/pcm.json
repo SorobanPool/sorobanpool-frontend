@@ -157,7 +157,11 @@
       "short": "{count} units no reach. Dem go refund members for the missing goods.",
       "submit": "Confirm delivery",
       "success": "Delivery don confirm."
-    }
+    },
+    "activate": "Activate my organizer account",
+    "activating": "We dey activate…",
+    "activated": "Your organizer account don active.",
+    "activateHelp": "Do this one time after support approve you."
   },
   "settings": {
     "title": "Settings",
