@@ -10,7 +10,8 @@ test.describe.serial('admin console and naira payment', () => {
   const ADMIN_API = '+2348000000005';
   const titles = { takedown: `Takedown Garri ${run}`, naira: `Naira Rice ${run}` };
   let ctx: Record<'admin' | 'trader', BrowserContext>, page: Record<'admin' | 'trader', Page>;
-  let adminApi: Client, supplier: Awaited<ReturnType<typeof makeActor>>, supplierId = '', traderApi: Client;
+  let adminApi: Client, supplier: Awaited<ReturnType<typeof makeActor>>, traderApi: Client;
+  const traderPhone = `+23480353${run.slice(-5)}`; // unique per run: names repeat across runs
   const offers: Record<string, string> = {};
   let poolId = '';
 
@@ -41,7 +42,6 @@ test.describe.serial('admin console and naira payment', () => {
 
     supplier = await makeActor(`+23480351${run.slice(-5)}`, 'Supplier'); // registered on-chain, as the activation button does
     await supplier.c.call('/suppliers/apply', { businessName: `Test Foods ${run}`, cacNumber: 'RC7654321', address: '3 Test Road', state: 'FCT', lga: 'Bwari', categories: ['rice', 'garri'], deliveryAreas: [{ state: 'FCT' }] });
-    supplierId = (await supplier.c.call('/me')).id;
 
     await page.admin.getByRole('link', { name: 'Suppliers' }).click();
     const card = page.admin.getByTestId('application').filter({ hasText: `Test Foods ${run}` });
@@ -77,9 +77,8 @@ test.describe.serial('admin console and naira payment', () => {
     await waitFor(async () => (await (await fetch(`${API}/p/${prep.prepared.shareSlug}`)).json()).id !== undefined, 'pool indexed', 90_000);
     poolId = (await (await fetch(`${API}/p/${prep.prepared.shareSlug}`)).json()).id;
 
-    const phone = `+23480353${run.slice(-5)}`;
-    await onboardViaUi(page.trader, phone, 'Iya Ngozi');
-    traderApi = await new Client(phone).login();
+    await onboardViaUi(page.trader, traderPhone, 'Iya Ngozi');
+    traderApi = await new Client(traderPhone).login();
     const wallet = (await traderApi.call('/me')).walletAddress as string;
     await page.trader.goto(`/pools/${poolId}`);
     await page.trader.getByLabel('How many units?').fill('20');
@@ -104,7 +103,7 @@ test.describe.serial('admin console and naira payment', () => {
   });
 
   test('the admin finds a user and grants a role through the UI', async () => {
-    const needle = `Iya Ngozi`;
+    const needle = traderPhone;
     await page.admin.goto('/admin/users');
     await page.admin.getByLabel('Search by phone or name').fill(needle);
     const row = page.admin.getByTestId('user-row').filter({ hasText: needle });
