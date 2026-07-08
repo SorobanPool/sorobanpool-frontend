@@ -14,4 +14,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck   # next typegen first: LayoutProps and friends are generated types
+      - run: pnpm test        # components, i18n completeness, pricing parity, signing guard, axe
       - run: pnpm build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:3000
+          NEXT_PUBLIC_DEPLOYMENTS: '{"usdc":"CAAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQC526","contracts":{}}'
