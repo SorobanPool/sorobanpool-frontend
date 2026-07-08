@@ -7,11 +7,10 @@ import { APP_NAME } from '@/lib/config';
 import { ServiceWorker } from '@/components/ServiceWorker';
 import { useSession } from '@/lib/store';
 
-const tabs = [
+const baseTabs = [
   { href: '/', key: 'home' },
   { href: '/explore', key: 'explore' },
   { href: '/organize', key: 'organize' },
-  { href: '/settings', key: 'settings' },
 ] as const;
 
 /** 360px-first layout: a slim header and a bottom tab bar with 48px+ tap targets. */
@@ -19,6 +18,14 @@ export function Shell({ children }: { children: ReactNode }) {
   const t = useTranslations('nav');
   const path = usePathname();
   const status = useSession((s) => s.status);
+  const roles = useSession((s) => s.me?.roles ?? []);
+  // Role tabs appear only for people who have the role, so a trader's bar stays four items wide.
+  const tabs = [
+    ...baseTabs,
+    ...(roles.includes('SUPPLIER') ? [{ href: '/supplier', key: 'supplier' } as const] : []),
+    ...(roles.includes('ARBITER') ? [{ href: '/arbiter', key: 'arbiter' } as const] : []),
+    { href: '/settings', key: 'settings' } as const,
+  ];
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-white text-neutral-900">
       <ServiceWorker />
