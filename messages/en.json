@@ -3,7 +3,9 @@
     "home": "Home",
     "explore": "Explore",
     "organize": "Organize",
-    "settings": "Settings"
+    "settings": "Settings",
+    "supplier": "Supplier",
+    "arbiter": "Arbiter"
   },
   "common": {
     "loading": "Loading…",
@@ -214,6 +216,105 @@
     "unsafe": {
       "what": "This request looks wrong, so we stopped it.",
       "todo": "Nothing was charged. Try again, and contact support if it keeps happening."
+    },
+    "IMAGE_INVALID": {
+      "what": "That photo could not be read.",
+      "todo": "Take the photo again or choose a different one."
     }
+  },
+  "supplier": {
+    "title": "Supplier portal",
+    "applyIntro": "Tell us about your business. We verify every supplier before offers go live.",
+    "business": "Business name",
+    "cac": "CAC registration number",
+    "address": "Business address",
+    "state": "State",
+    "lga": "LGA",
+    "categories": "What you sell (for example rice, beans, oil)",
+    "apply": "Apply to sell",
+    "pending": "Your application is being reviewed. We will tell you when it is approved.",
+    "rejected": "Your application was not approved. Contact support.",
+    "activate": "Activate my supplier account",
+    "activated": "Your supplier account is active.",
+    "activateHelp": "Do this once after we approve you.",
+    "newOffer": "New offer",
+    "pools": "Group buys on your offers",
+    "noPools": "No group buys yet.",
+    "accept": "Accept order",
+    "reject": "Decline order",
+    "dispatch": "Mark as dispatched",
+    "acceptBy": "Accept before it closes",
+    "payout": "You will be paid about {amount} after delivery is confirmed",
+    "bond": "Bond",
+    "bondTotal": "Bond held: {total}",
+    "bondDeposit": "Add to bond (USD)",
+    "bondAdd": "Add to bond",
+    "done": "Done.",
+    "offer": {
+      "title": "New offer",
+      "name": "Product name",
+      "brand": "Brand",
+      "unit": "Unit (for example 50kg bag)",
+      "category": "Category",
+      "tiers": "Price breaks (naira per unit)",
+      "minUnits": "From units",
+      "priceNgn": "Price (₦)",
+      "addTier": "Add a price break",
+      "removeTier": "Remove",
+      "maxUnits": "Most units for the whole group",
+      "maxPer": "Most units per person",
+      "lead": "Delivery time after order (hours)",
+      "valid": "Offer valid for (days, up to 14)",
+      "description": "Description",
+      "photos": "Photos (at least 2)",
+      "addPhoto": "Add photo",
+      "preview": "About {usd} USD per unit at today's rate",
+      "publish": "Publish offer",
+      "published": "Your offer is live.",
+      "fxBlocked": "Exchange rates are not available right now, so offers cannot be published. Try again shortly."
+    }
+  },
+  "dispute": {
+    "report": "Report a problem",
+    "title": "Report a problem with your goods",
+    "reason": "What is wrong?",
+    "reasons": {
+      "Short": "Some goods are missing",
+      "WrongItem": "Wrong goods",
+      "Damaged": "Goods are damaged",
+      "Quality": "Poor quality",
+      "NotDelivered": "Goods were not delivered",
+      "Other": "Something else"
+    },
+    "units": "How many units are affected?",
+    "photos": "Photos (at least 1)",
+    "deposit": "A small deposit is held while this is decided. You get it back if your report is upheld.",
+    "submit": "Send report",
+    "sent": "Your report was sent. An arbiter will decide within 5 days.",
+    "window": "You can report a problem until the confirmation time ends."
+  },
+  "arbiter": {
+    "title": "Disputes to decide",
+    "empty": "No open disputes.",
+    "sla": "Decide within {hours}h",
+    "slaPassed": "Time is up: the refund will happen automatically.",
+    "claimed": "Amount in dispute",
+    "evidence": "Evidence",
+    "noEvidence": "No evidence uploaded.",
+    "outcome": "Decision",
+    "outcomes": {
+      "ReleaseToSupplier": "Pay the supplier",
+      "RefundMember": "Refund some units",
+      "Split": "Split",
+      "RefundPool": "Refund the whole group"
+    },
+    "unitsToRefund": "Units to refund",
+    "memberShare": "Share to the buyer (%)",
+    "reasoning": "Your reasoning (shown in the record)",
+    "preview": "Buyer gets {buyer}. Supplier gets {supplier}.",
+    "resolve": "Record decision",
+    "resolved": "Decision recorded.",
+    "needWallet": "Bind your wallet in onboarding first.",
+    "notArbiter": "This area is for arbiters. Ask support if you should have access."
   }
 }

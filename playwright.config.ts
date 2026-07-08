@@ -14,7 +14,8 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [['list']],
-  use: { baseURL: WEB, trace: 'retain-on-failure', screenshot: 'only-on-failure' },
+  // Without an action timeout a missing element waits for the whole test timeout (20 minutes).
+  use: { baseURL: WEB, trace: 'retain-on-failure', screenshot: 'only-on-failure', actionTimeout: 30_000, navigationTimeout: 60_000 },
   projects: [{ name: 'mobile', use: { ...devices['Pixel 5'] } }],
   webServer: [
     {

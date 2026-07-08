@@ -20,10 +20,10 @@ export async function compressImage(file: File, maxSide = 1280, quality = 0.75):
 }
 
 /** sign -> PUT to the short-lived URL. The server computes the hash that ends up on-chain. */
-export async function uploadEvidence(kind: 'DELIVERY' | 'DISPUTE' | 'WAYBILL', poolId: string, file: File): Promise<{ evidenceId: string; sha256: string }> {
+export async function uploadEvidence(kind: 'DELIVERY' | 'DISPUTE' | 'WAYBILL' | 'PRODUCT', poolId: string | undefined, file: File): Promise<{ evidenceId: string; sha256: string }> {
   const blob = await compressImage(file);
   const mime = blob.type || file.type || 'image/jpeg';
-  const slot = await api<{ evidenceId: string; uploadUrl: string }>('/uploads/sign', { body: { kind, mime, size: blob.size, poolId } });
+  const slot = await api<{ evidenceId: string; uploadUrl: string }>('/uploads/sign', { body: { kind, mime, size: blob.size, ...(poolId ? { poolId } : {}) } });
   const res = await fetch(`${BASE}${slot.uploadUrl}`, { method: 'PUT', body: blob, headers: { 'content-type': mime } });
   if (!res.ok) throw new Error(`upload failed (${res.status})`);
   return res.json();

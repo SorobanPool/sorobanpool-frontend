@@ -7,6 +7,7 @@ import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
 import { useConfirm } from '@/components/ConfirmDialog';
 import { JoinPanel } from '@/components/pool/JoinPanel';
 import { PoolSummary } from '@/components/pool/PoolSummary';
+import { ReportProblem } from '@/components/dispute/ReportProblem';
 import { PoolTimeline } from '@/components/pool/PoolTimeline';
 import { ShareButton } from '@/components/pool/ShareButton';
 import { api, ApiError } from '@/lib/api';
@@ -82,6 +83,7 @@ export default function PoolPage() {
         </div>
       )}
       {done === 'refund' && <p role="status" className="rounded-lg bg-emerald-50 p-3 font-semibold text-emerald-900">{t('refundDone')}</p>}
+      {member && pool.state === 'Delivered' && <ReportProblem poolId={id} maxUnits={mine!.units} />}
       {error !== null && <ErrorExplainer error={error} />}
       {pool.state === 'Open' && <ShareButton slug={pool.shareSlug} product={pool.offer?.title ?? ''} price={pool.currentUnitPriceNaira ? `₦${pool.currentUnitPriceNaira}` : ''} />}
       {dialog}

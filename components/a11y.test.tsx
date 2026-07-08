@@ -13,7 +13,7 @@ vi.mock('@/lib/tx', async (orig) => ({ ...(await orig<typeof import('@/lib/tx')>
 
 const pool: PoolView = {
   id: '7', state: 'Open', shareSlug: 'abc', offerId: 'o', organizer: 'GORG', supplier: 'GSUP', hub: { address: 'Wuse Market Gate B', contact: '0803' }, pickupWindow: { from: 'Mon 9am', to: 'Mon 5pm' },
-  fillDeadline: '2099-01-01T00:00:00Z', totalUnits: 60, receivedUnits: null, moq: 100, maxUnits: 200, members: 3, ngnPerUsd: 1500, progressPct: 60,
+  fillDeadline: '2099-01-01T00:00:00Z', totalUnits: 60, receivedUnits: null, moq: 100, maxUnits: 200, members: 3, ngnPerUsd: 1500, filledAt: null, progressPct: 60,
   currentUnitPriceUsdc: '10000000', currentUnitPriceNaira: '15,000', nextBreak: { unitsToGo: 40, unitPriceUsdc: '9000000' },
   tiersUsdc: [{ minUnits: 100, unitPrice: '10000000' }, { minUnits: 200, unitPrice: '9000000' }], finalUnitPriceUsdc: null,
   offer: { id: 'o', title: 'Mama Gold Rice 50kg', brand: 'Mama Gold', description: 'Rice', unitLabel: '50kg bag', category: 'rice', images: [], moq: 100, maxUnits: 200, maxPerMember: 60, leadTimeHours: 72, tiersUsdc: [], tiersNgn: [], validUntil: '2099-01-01T00:00:00Z' },
