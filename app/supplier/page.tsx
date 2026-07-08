@@ -138,11 +138,11 @@ export default function Supplier() {
   const pools = useQuery({ queryKey: ['pools', 'mine'], queryFn: () => api<PoolCard[]>('/pools?mine=true'), enabled: ready && profile.data?.kybStatus === 'APPROVED', refetchInterval: 15_000 });
   if (!ready || profile.isLoading) return <p>{common('loading')}</p>;
   if (profile.error) return <ErrorExplainer error={profile.error} onRetry={() => void profile.refetch()} />;
-  const status = profile.data?.kybStatus;
+  const status = profile.data?.kybStatus; // no status means no application yet
   return (
     <div className="space-y-5">
       <h1 className="text-2xl font-bold">{t('title')}</h1>
-      {!profile.data && <ApplyForm onDone={() => void qc.invalidateQueries({ queryKey: ['supplier'] })} />}
+      {!status && <ApplyForm onDone={() => void qc.invalidateQueries({ queryKey: ['supplier'] })} />}
       {/* Registering on-chain comes first: the attestor can only verify a supplier that exists in the registry. */}
       {(status === 'PENDING' || status === 'APPROVED') && <ActivateRole role="Supplier" ns="supplier" />}
       {status === 'PENDING' && <p role="status" className="rounded-xl bg-amber-50 p-4">{t('pending')}</p>}
