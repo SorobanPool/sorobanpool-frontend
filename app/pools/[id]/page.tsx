@@ -1,4 +1,5 @@
 'use client';
+import { usePoolStream } from '@/lib/pool-stream';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -24,8 +25,9 @@ export default function PoolPage() {
   const { ready } = useRequireAuth();
   const qc = useQueryClient();
   const { ask, dialog } = useConfirm();
-  // The indexer trails the chain by a few seconds, so poll while the pool is live.
-  const q = useQuery({ queryKey: ['pool', id], queryFn: () => api<PoolView>(`/pools/${id}`), enabled: ready, refetchInterval: 6_000 });
+  // The stream refreshes this the moment the indexer applies an event; slow polling covers a dropped stream.
+  const q = useQuery({ queryKey: ['pool', id], queryFn: () => api<PoolView>(`/pools/${id}`), enabled: ready, refetchInterval: 15_000 });
+  usePoolStream(id, ready);
   const [busy, setBusy] = useState<'pickup' | 'refund' | null>(null);
   const [done, setDone] = useState<'pickup' | 'refund' | null>(null);
   const [error, setError] = useState<unknown>(null);
