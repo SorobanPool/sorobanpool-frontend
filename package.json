@@ -13,6 +13,7 @@
     "sync:contracts": "scripts/sync-contract-artifacts.sh"
   },
   "dependencies": {
+    "@simplewebauthn/browser": "^14.0.0",
     "@stellar/stellar-sdk": "17.2.1",
     "@tanstack/react-query": "5.104.1",
     "idb-keyval": "6.3.0",

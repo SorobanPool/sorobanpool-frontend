@@ -22,7 +22,8 @@
     "members": "{count, plural, one {# member} other {# members}}",
     "offline": "You are offline. Showing what we last saw.",
     "learnMore": "How does this work?",
-    "signInFirst": "Please sign in first."
+    "signInFirst": "Please sign in first.",
+    "error": "Something went wrong. Please try again."
   },
   "trust": {
     "message": "Your money is held safely. The supplier is paid only after the goods arrive. If the group doesn't fill, you get everything back automatically."
@@ -57,7 +58,8 @@
     "testMoneyBody": "This is a test version. We add practice money so you can try a payment.",
     "testMoneyAction": "Add practice money",
     "finished": "You are all set!",
-    "goExplore": "Find a group buy"
+    "goExplore": "Find a group buy",
+    "passkeySignIn": "Sign in with a passkey"
   },
   "explore": {
     "title": "Open group buys",
@@ -175,7 +177,12 @@
     "backup": "Show my backup",
     "backupWarn": "Anyone with this can take your money. Never share it.",
     "signOut": "Sign out",
-    "help": "Help"
+    "help": "Help",
+    "passkeyTitle": "Passkey",
+    "passkeyAdd": "Add a passkey on this phone",
+    "passkeyHelp": "Sign in next time with your fingerprint, face or PIN instead of an SMS code.",
+    "passkeyDone": "Passkey added. You can use it to sign in.",
+    "passkeyUnsupported": "This phone does not support passkeys."
   },
   "errors": {
     "generic": {
