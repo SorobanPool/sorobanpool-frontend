@@ -7,15 +7,21 @@ vi.mock('@simplewebauthn/browser', () => ({
   startAuthentication: (a: unknown) => start.auth(a),
 }));
 const calls: { path: string; init: Record<string, unknown> }[] = [];
+let passkeyList: { id: string; createdAt: string }[] = [{ id: 'p1', createdAt: '2026-01-01T00:00:00Z' }];
 vi.mock('./api', () => ({
-  api: async (path: string, init: Record<string, unknown>) => {
+  api: async (path: string, init: Record<string, unknown> = {}) => {
     calls.push({ path, init });
     if (path.endsWith('/options')) return { challengeId: 'c1', options: { challenge: 'abc' } };
+    if (path === '/auth/passkey' && (init.method ?? 'GET') === 'GET') return passkeyList;
+    if (path.startsWith('/auth/passkey/') && init.method === 'DELETE') {
+      passkeyList = passkeyList.filter((p) => !path.endsWith(p.id));
+      return undefined;
+    }
     return { accessToken: 'a', refreshToken: 'r', user: { walletAddress: null } };
   },
 }));
 
-import { passkeyCancelled, passkeysSupported, registerPasskey, signInWithPasskey } from './passkey';
+import { listPasskeys, passkeyCancelled, passkeysSupported, registerPasskey, removePasskey, signInWithPasskey } from './passkey';
 
 describe('passkey client', () => {
   beforeEach(() => { calls.length = 0; start.reg.mockReset(); start.auth.mockReset(); });
@@ -46,5 +52,20 @@ describe('passkey client', () => {
     expect(passkeyCancelled({ name: 'AbortError' })).toBe(true);
     expect(passkeyCancelled(new Error('network'))).toBe(false);
     expect(passkeysSupported()).toBe(true);
+  });
+});
+
+describe('passkey management', () => {
+  beforeEach(() => { calls.length = 0; passkeyList = [{ id: 'p1', createdAt: '2026-01-01T00:00:00Z' }]; });
+
+  it('lists the signed-in user\'s passkeys', async () => {
+    expect(await listPasskeys()).toEqual([{ id: 'p1', createdAt: '2026-01-01T00:00:00Z' }]);
+    expect(calls[0]).toMatchObject({ path: '/auth/passkey' });
+  });
+
+  it('removes a passkey by id with DELETE', async () => {
+    await removePasskey('p1');
+    expect(calls[0]).toMatchObject({ path: '/auth/passkey/p1', init: { method: 'DELETE' } });
+    expect(await listPasskeys()).toEqual([]);
   });
 });
