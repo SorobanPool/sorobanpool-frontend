@@ -6,7 +6,9 @@
     "settings": "Settings",
     "supplier": "Supplier",
     "arbiter": "Arbiter",
-    "admin": "Admin"
+    "admin": "Admin",
+    "main": "Main",
+    "signIn": "Sign in"
   },
   "common": {
     "loading": "Loading…",
@@ -35,7 +37,19 @@
     "explore": "See open group buys",
     "myPools": "My group buys",
     "noPools": "You have not joined a group buy yet.",
-    "readyForPickup": "Ready for pickup"
+    "readyForPickup": "Ready for pickup",
+    "badge": "Built on Stellar · Made for your market",
+    "heroLead": "Buy together.",
+    "heroAccent": "Pay on delivery.",
+    "heroBody": "Join traders in your market to unlock wholesale prices. Your money stays protected until your goods arrive.",
+    "heroCta": "Explore group buys",
+    "step1Title": "Find your deal",
+    "step1Body": "Pick a bulk offer from a supplier your market can trust.",
+    "step2Title": "Buy as a group",
+    "step2Body": "Pool your orders with nearby traders and unlock a lower price.",
+    "step3Title": "Pay on delivery",
+    "step3Body": "Your money is held safely until the goods reach your pickup point.",
+    "howItWorks": "How it works"
   },
   "onboarding": {
     "title": "Create your account",
@@ -67,7 +81,13 @@
     "from": "From {price} per unit",
     "minimum": "Minimum {count} units",
     "offers": "Offers",
-    "openPools": "Open pools"
+    "openPools": "Open pools",
+    "eyebrow": "Better prices, together",
+    "lead": "Join an open order near you and share the wholesale price.",
+    "openCount": "{count} open now",
+    "openBadge": "Open for joining",
+    "pricePerUnit": "Price per unit",
+    "filled": "{pct}% filled"
   },
   "pool": {
     "price": "Price now",
