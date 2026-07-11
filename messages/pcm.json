@@ -63,7 +63,7 @@
     "marketLabel": "Your market",
     "profile": "Small tori about you",
     "walletTitle": "Set up your wallet",
-    "walletBody": "We go create secure wallet for this phone. Na only you fit approve payment, with your fingerprint, face or PIN.",
+    "walletBody": "Na passkey for this phone dey protect your wallet. Na only you fit approve payment, with your fingerprint, face or PIN. No password or secret wey you go write down.",
     "walletCreate": "Create my wallet",
     "walletActivating": "We dey activate your account…",
     "backupTitle": "Keep backup",
@@ -73,7 +73,9 @@
     "testMoneyAction": "Add practice money",
     "finished": "Everything don set!",
     "goExplore": "Find group buy",
-    "passkeySignIn": "Enter with passkey"
+    "passkeySignIn": "Enter with passkey",
+    "passkeyNeeded": "This phone or browser no support passkey. Open this page for Chrome or Safari for phone wey dey up to date.",
+    "walletDeviceFallback": "Na for testing only: keep key for this device instead"
   },
   "explore": {
     "title": "Group buys wey dey open",
@@ -204,7 +206,8 @@
     "passkeyDone": "Passkey don add. You fit use am enter.",
     "passkeyUnsupported": "This phone no support passkey.",
     "passkeyAddedOn": "Passkey wey you add {date}",
-    "passkeyRemove": "Remove am"
+    "passkeyRemove": "Remove am",
+    "walletPasskey": "Na your passkey dey protect your wallet. No secret to write down: for new phone, sign in with the same passkey."
   },
   "errors": {
     "generic": {

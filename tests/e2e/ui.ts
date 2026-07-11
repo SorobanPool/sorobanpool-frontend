@@ -1,6 +1,6 @@
 import { expect, type Page } from '@playwright/test';
 
-/** Phone -> OTP -> profile -> wallet -> test money -> backup, through the real UI. Returns the phone used. */
+/** Phone -> OTP -> profile -> passkey wallet -> test money, through the real UI (needs a virtual authenticator). */
 export async function onboardViaUi(page: Page, phone: string, name: string): Promise<void> {
   await page.goto('/onboarding');
   await page.getByLabel('Your phone number').fill(phone);
@@ -13,9 +13,7 @@ export async function onboardViaUi(page: Page, phone: string, name: string): Pro
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Create my wallet' }).click();
   await page.getByRole('button', { name: 'Add practice money' }).click({ timeout: 90_000 });
-  await expect(page.getByRole('heading', { name: 'Keep a backup' })).toBeVisible({ timeout: 150_000 });
-  await page.getByRole('button', { name: 'Done' }).click();
-  await expect(page.getByRole('status')).toContainText('You are all set');
+  await expect(page.getByRole('status')).toContainText('You are all set', { timeout: 150_000 });
 }
 
 /** datetime-local value (YYYY-MM-DDTHH:mm) for `secs` from now in the browser's local time. */

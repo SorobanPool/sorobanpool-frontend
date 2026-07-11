@@ -2,7 +2,7 @@
 import { create } from 'zustand';
 import { clearApiCache } from '@/components/ServiceWorker';
 import { api, session } from './api';
-import { loadWallet } from './wallet';
+import { clearWallet, loadWallet } from './wallet';
 
 export interface Me {
   id: string;
@@ -49,6 +49,9 @@ export const useSession = create<SessionState>((set, get) => ({
   signOut() {
     session.clear();
     clearApiCache();
-    set({ status: 'anon', me: null });
+    set({ status: 'anon', me: null, devicePublicKey: null });
+    // A passkey wallet is only an address here (the passkey is the key), so forget it: the next person on a shared
+    // phone must not inherit it. A device-key wallet is kept, because clearing it would lose the only copy of the key.
+    void loadWallet().then((w) => (w?.kind === 'passkey' ? clearWallet() : undefined));
   },
 }));

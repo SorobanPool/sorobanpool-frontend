@@ -283,6 +283,10 @@
     "what": "The amount is too large to process.",
     "todo": "Choose a smaller amount."
   },
+  "412": {
+    "what": "You have already reported a problem with this group buy.",
+    "todo": "Add photos or details to your existing report instead."
+  },
   "500": {
     "what": "That amount is not valid.",
     "todo": "Enter an amount above zero."
@@ -314,5 +318,25 @@
   "602": {
     "what": "The system is not ready yet.",
     "todo": "Try again in a moment."
+  },
+  "700": {
+    "what": "This passkey is not linked to your wallet.",
+    "todo": "Use the passkey you created when you set up your account."
+  },
+  "701": {
+    "what": "This passkey is already linked to your wallet.",
+    "todo": "Nothing to do: you can already use it."
+  },
+  "702": {
+    "what": "You cannot remove your only passkey.",
+    "todo": "Add a passkey on another phone first, then remove this one."
+  },
+  "703": {
+    "what": "Your wallet already has the most passkeys allowed.",
+    "todo": "Remove a passkey you no longer use, then try again."
+  },
+  "704": {
+    "what": "This passkey could not be read.",
+    "todo": "Try again, or create a new passkey in Settings."
   }
 }

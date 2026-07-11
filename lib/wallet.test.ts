@@ -9,7 +9,10 @@ vi.mock('idb-keyval', () => ({
   del: async (k: string) => void store.delete(k),
 }));
 
-import { backupSecret, clearWallet, confirmWithDevice, createWallet, importWallet, loadWallet, signAuthEntries, signChallenge } from './wallet';
+const passkeySigner = vi.hoisted(() => ({ signWithPasskey: vi.fn(async (entries: string[]) => entries.map((e) => `signed:${e}`)) }));
+vi.mock('./passkey-signer', () => passkeySigner);
+
+import { adoptPasskeyWallet, backupSecret, clearWallet, confirmWithDevice, createWallet, importWallet, loadWallet, signAuthEntries, signChallenge } from './wallet';
 
 beforeEach(async () => {
   store.clear();
@@ -21,7 +24,7 @@ describe('device wallet', () => {
     expect(await loadWallet()).toBeNull();
     const { publicKey } = await createWallet();
     expect(StrKey.isValidEd25519PublicKey(publicKey)).toBe(true);
-    expect(await loadWallet()).toEqual({ publicKey });
+    expect(await loadWallet()).toEqual({ publicKey, kind: 'device' });
     expect(JSON.stringify(await loadWallet())).not.toMatch(/^S/);
     expect(StrKey.isValidEd25519SecretSeed(await backupSecret())).toBe(true);
   });
@@ -72,5 +75,34 @@ describe('signAuthEntries', () => {
     const other = entryFor(Keypair.random().publicKey(), true).toXDR('base64');
     const [out] = await signAuthEntries([other], 5000, 'Test SDF Network ; September 2015');
     expect(out).toBe(other);
+  });
+});
+
+describe('passkey wallet', () => {
+  const address = StrKey.encodeContract(Buffer.alloc(32, 3));
+
+  it('stores only the address: there is no secret to leak or back up', async () => {
+    expect(await adoptPasskeyWallet(address)).toEqual({ publicKey: address, kind: 'passkey' });
+    expect(await loadWallet()).toEqual({ publicKey: address, kind: 'passkey' });
+    expect(JSON.stringify([...store.values()])).toBe(JSON.stringify([{ kind: 'passkey', address }]));
+    await expect(backupSecret()).rejects.toThrow('PASSKEY_WALLET_HAS_NO_KEY');
+    await expect(signChallenge('x')).rejects.toThrow('PASSKEY_WALLET_HAS_NO_KEY');
+  });
+
+  it('refuses an address that is not a contract wallet', async () => {
+    await expect(adoptPasskeyWallet(Keypair.random().publicKey())).rejects.toThrow('NOT_A_PASSKEY_WALLET');
+  });
+
+  it('signs with the passkey (the prompt is the confirmation, so there is no second gate)', async () => {
+    await adoptPasskeyWallet(address);
+    expect(await confirmWithDevice()).toBe('verified');
+    expect(await signAuthEntries(['e1'], 777, 'Test SDF Network ; September 2015')).toEqual(['signed:e1']);
+    expect(passkeySigner.signWithPasskey).toHaveBeenCalledWith(['e1'], address, 777, 'Test SDF Network ; September 2015');
+  });
+
+  it('a wallet stored before passkey wallets existed still loads as a device wallet', async () => {
+    const kp = Keypair.random();
+    store.set('sp.wallet.v1', { secret: kp.secret(), publicKey: kp.publicKey() });
+    expect(await loadWallet()).toEqual({ publicKey: kp.publicKey(), kind: 'device' });
   });
 });

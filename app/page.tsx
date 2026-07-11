@@ -22,7 +22,7 @@ export default function Home() {
             <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-300" /> {t('badge')}
           </span>
           <h1 className="mt-7 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-.045em] md:text-6xl">
-            {t('heroLead')}
+            {t('heroLead')}{' '}
             <br />
             <span className="text-emerald-300">{t('heroAccent')}</span>
           </h1>

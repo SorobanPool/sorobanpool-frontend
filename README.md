@@ -22,8 +22,8 @@ Measured (Lighthouse mobile, public pool page): perf 0.98, LCP 1.7 s, 162 KB JS.
 
 ## Notes
 - The pool page updates live from the backend's SSE stream (`lib/pool-stream.ts`) and falls back to polling every 15 s.
-- Passkeys: add one in Settings, then sign in with it from the onboarding screen (needs a browser with WebAuthn; the button only appears where supported). This is sign-in only, not a passkey wallet.
+- Wallets: onboarding creates a **passkey smart wallet** (contracts ADR 0006). The passkey made on the phone controls an on-chain account deployed and paid for by the backend; every signature is a fingerprint/face/PIN prompt whose WebAuthn challenge is the Soroban auth payload (`lib/passkey-signer.ts`). Nothing secret is stored in the browser, so there is no backup step, and a synced passkey signs in and pays from a new phone. A device-key wallet remains only as a testnet fallback for browsers without passkeys.
 - The app refuses to sign anything unless `NEXT_PUBLIC_DEPLOYMENTS` is baked in at build time (it cannot verify what it is signing otherwise). A build without it will load but every money action will fail by design.
 
 ## Not done yet
-Passkey smart wallet (ADR 0001), Pidgin copy review by native speakers, Lighthouse in CI, translations beyond EN/PCM, a real naira provider (the app talks to the backend's mock anchor), native-device testing (Playwright mobile emulation only).
+Account recovery when every passkey is lost (guardian/social recovery), Pidgin copy review by native speakers, Lighthouse in CI, translations beyond EN/PCM, a real naira provider (the app talks to the backend's mock anchor), native-device testing (Playwright mobile emulation only).
