@@ -1,86 +1,90 @@
-'use client';
-import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { api } from '@/lib/api';
-import { useSession } from '@/lib/store';
-import type { PoolCard } from '@/lib/types';
+import { getTranslations } from 'next-intl/server';
+import { ArrowIcon, RefundIcon, SearchIcon, ShieldIcon, TruckIcon, UsersIcon } from '@/components/brand/icons';
+import { HeroPriceCard } from '@/components/home/HeroPriceCard';
+import { HeroSignIn, MyPools } from '@/components/home/HomeIslands';
 
-const STEPS = [1, 2, 3] as const;
-
-export default function Home() {
-  const t = useTranslations('home');
-  const states = useTranslations('states');
-  const historyT = useTranslations('history');
-  const status = useSession((s) => s.status);
-  const mine = useQuery({ queryKey: ['pools', 'mine'], queryFn: () => api<PoolCard[]>('/pools?mine=true'), enabled: status === 'authed', refetchInterval: 15_000 });
+/**
+ * Home is a server component: the hero, the guarantees and "how it works" are static HTML with no JavaScript, which
+ * keeps trader pages inside the 170 KB budget on 3G (ADR 0002). Only the sign-in button and "my group buys" are
+ * client islands.
+ */
+export default async function Home() {
+  const t = await getTranslations('home');
+  const guarantees = [
+    { icon: ShieldIcon, title: t('trust1Title'), body: t('trust1Body') },
+    { icon: TruckIcon, title: t('trust2Title'), body: t('trust2Body') },
+    { icon: RefundIcon, title: t('trust3Title'), body: t('trust3Body') },
+  ];
+  const steps = [
+    { icon: SearchIcon, title: t('step1Title'), body: t('step1Body') },
+    { icon: UsersIcon, title: t('step2Title'), body: t('step2Body') },
+    { icon: TruckIcon, title: t('step3Title'), body: t('step3Body') },
+  ];
   return (
     <div className="page-enter space-y-12 md:space-y-16">
-      <section className="relative isolate overflow-hidden rounded-[2rem] bg-emerald-950 px-6 py-10 text-white shadow-2xl shadow-emerald-950/10 md:px-14 md:py-16">
+      <section className="relative isolate overflow-hidden rounded-[2rem] bg-emerald-950 px-6 py-10 text-white shadow-2xl shadow-emerald-950/10 md:px-12 md:py-14">
         <div aria-hidden="true" className="absolute -right-20 -top-24 -z-10 size-80 rounded-full bg-emerald-400/20 blur-3xl" />
-        <div aria-hidden="true" className="absolute bottom-[-11rem] right-[18%] -z-10 size-80 rounded-full bg-amber-400/15 blur-3xl" />
-        <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-100">
-            <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-300" /> {t('badge')}
-          </span>
-          <h1 className="mt-7 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-.045em] md:text-6xl">
-            {t('heroLead')}{' '}
-            <br />
-            <span className="text-emerald-300">{t('heroAccent')}</span>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-emerald-50/85 md:text-lg">{t('heroBody')}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/explore" className="group flex min-h-13 items-center justify-center gap-3 rounded-full bg-amber-300 px-6 font-bold text-emerald-950 shadow-lg shadow-black/10 hover:bg-amber-200">
-              {t('heroCta')} <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-            {status === 'anon' && (
-              <Link href="/onboarding" className="flex min-h-13 items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 font-semibold text-white hover:bg-white/10">
-                {t('signIn')}
+        <div aria-hidden="true" className="absolute -bottom-40 left-1/3 -z-10 size-80 rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-100">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-300" /> {t('badge')}
+            </span>
+            <h1 className="mt-6 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-.045em] md:text-6xl">
+              {t('heroLead')}{' '}
+              <br />
+              <span className="text-emerald-300">{t('heroAccent')}</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-7 text-emerald-50/85 md:text-lg">{t('heroBody')}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/explore" className="group flex min-h-13 items-center justify-center gap-3 rounded-full bg-amber-300 px-6 font-bold text-emerald-950 shadow-lg shadow-black/10 hover:bg-amber-200">
+                {t('heroCta')} <ArrowIcon className="size-5 transition-transform group-hover:translate-x-1" />
               </Link>
-            )}
+              <HeroSignIn />
+            </div>
           </div>
-        </div>
-        <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-8 hidden h-[82%] w-[36%] items-end justify-center md:flex">
-          <div className="relative mb-[-3rem] flex h-[85%] w-full max-w-sm items-end justify-center">
-            <div className="absolute bottom-10 size-64 rounded-full border border-white/10" />
-            <div className="absolute bottom-16 size-48 rounded-full border border-white/10" />
-            <div className="absolute bottom-[4.5rem] h-56 w-64 rounded-t-[7rem] border-x border-t border-emerald-200/20 bg-gradient-to-b from-emerald-300/15 to-emerald-300/0" />
-            <span className="absolute bottom-52 right-[22%] size-5 rounded-full bg-amber-300 shadow-[0_0_32px_rgba(252,211,77,.55)]" />
+          <div className="flex justify-center lg:justify-end">
+            <HeroPriceCard />
           </div>
         </div>
       </section>
 
+      <section aria-labelledby="trust-h" className="rounded-[2rem] border border-emerald-900/10 bg-white p-6 md:p-10">
+        <div className="max-w-2xl">
+          <h2 id="trust-h" className="text-2xl font-bold tracking-tight md:text-3xl">{t('trustTitle')}</h2>
+          <p className="mt-2 leading-7 text-neutral-700">{t('trustLead')}</p>
+        </div>
+        <ul className="mt-8 grid gap-6 md:grid-cols-3">
+          {guarantees.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="flex gap-4">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-800"><Icon /></span>
+              <div>
+                <h3 className="font-semibold">{title}</h3>
+                <p className="mt-1 text-sm leading-6 text-neutral-700">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section aria-labelledby="how-h">
-        <h2 id="how-h" className="sr-only">{t('howItWorks')}</h2>
-        <ol className="grid gap-4 sm:grid-cols-3">
-          {STEPS.map((n) => (
-            <li key={n} className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:p-6">
-              <span aria-hidden="true" className="text-xs font-bold tracking-[.18em] text-emerald-700">0{n}</span>
-              <h3 className="mt-4 text-lg font-semibold tracking-tight">{t(`step${n}Title`)}</h3>
-              <p className="mt-2 text-sm leading-6 text-neutral-700">{t(`step${n}Body`)}</p>
+        <h2 id="how-h" className="text-2xl font-bold tracking-tight md:text-3xl">{t('howItWorks')}</h2>
+        <ol className="mt-6 grid gap-4 sm:grid-cols-3">
+          {steps.map(({ icon: Icon, title, body }, i) => (
+            <li key={title} className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:p-6">
+              <div className="flex items-center justify-between">
+                <span className="grid size-11 place-items-center rounded-2xl bg-emerald-900 text-white"><Icon className="size-5" /></span>
+                <span aria-hidden="true" className="text-xs font-bold tracking-[.18em] text-emerald-800">0{i + 1}</span>
+              </div>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-700">{body}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      {status === 'authed' && (
-        <section aria-labelledby="mine-h" className="space-y-4">
-          <h2 id="mine-h" className="text-2xl font-bold tracking-tight">{t('myPools')}</h2>
-          {mine.data?.length === 0 && <p className="text-neutral-700">{t('noPools')}</p>}
-          <ul className="space-y-3">
-            {mine.data?.map((p) => (
-              <li key={p.id}>
-                <Link href={`/pools/${p.id}`} className="pool-card block min-h-12 rounded-2xl border border-neutral-200 bg-white p-5">
-                  <p className="font-semibold">{p.title}</p>
-                  <p className="text-sm text-neutral-700">{states(p.state)}{p.currentUnitPriceNaira ? ` · ₦${p.currentUnitPriceNaira}` : ''}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link href="/explore" className="flex min-h-12 items-center justify-center rounded-xl border border-emerald-800 px-4 font-semibold text-emerald-900">{t('explore')}</Link>
-          <Link href="/history" className="flex min-h-12 items-center justify-center rounded-xl px-4 font-semibold text-emerald-900 underline-offset-4 hover:underline">{historyT('link')}</Link>
-        </section>
-      )}
+      <MyPools />
     </div>
   );
 }

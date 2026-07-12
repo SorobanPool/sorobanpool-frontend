@@ -38,7 +38,7 @@
     "myPools": "My group buys",
     "noPools": "You have not joined a group buy yet.",
     "readyForPickup": "Ready for pickup",
-    "badge": "Built on Stellar · Made for your market",
+    "badge": "Group buying · Built on Stellar",
     "heroLead": "Buy together.",
     "heroAccent": "Pay on delivery.",
     "heroBody": "Join traders in your market to unlock wholesale prices. Your money stays protected until your goods arrive.",
@@ -49,7 +49,25 @@
     "step2Body": "Pool your orders with nearby traders and unlock a lower price.",
     "step3Title": "Pay on delivery",
     "step3Body": "Your money is held safely until the goods reach your pickup point.",
-    "howItWorks": "How it works"
+    "howItWorks": "How it works",
+    "exampleLabel": "Example: how the price falls as more traders join",
+    "exampleBadge": "Example group buy",
+    "exampleProduct": "Mama Gold Rice, 50kg bag",
+    "exampleHub": "Pickup: Wuse Market, Gate B",
+    "exampleClosing": "Closes in 2 days",
+    "exampleJoined": "{joined} of {max} bags joined",
+    "exampleNext": "{units} more for {price}",
+    "exampleTier": "From {from} bags",
+    "exampleCaption": "Everyone pays the lowest price the group reaches. If you paid more when you joined, the difference comes back to you.",
+    "trustTitle": "Your money is safe at every step",
+    "trustLead": "No collector holds the cash. Your money waits in an escrow on Stellar that only releases when the rules below are met.",
+    "trust1Title": "Held safely, not by a person",
+    "trust1Body": "Your money is held safely in escrow. Nobody can take it, not even SorobanPool.",
+    "trust2Title": "Supplier paid after delivery",
+    "trust2Body": "The supplier is paid only after the goods arrive at your market and the group confirms.",
+    "trust3Title": "Automatic refund",
+    "trust3Body": "If the group doesn't fill, or the supplier doesn't deliver, you get everything back automatically.",
+    "progressLabel": "Progress to the minimum order"
   },
   "onboarding": {
     "title": "Create your account",
@@ -75,7 +93,14 @@
     "goExplore": "Find a group buy",
     "passkeySignIn": "Sign in with a passkey",
     "passkeyNeeded": "This phone or browser does not support passkeys. Open this page in Chrome or Safari on an up-to-date phone.",
-    "walletDeviceFallback": "Testing only: keep a key on this device instead"
+    "walletDeviceFallback": "Testing only: keep a key on this device instead",
+    "stepOf": "Step {step} of {total}",
+    "safeTitle": "Why this is safe",
+    "safe1": "Your money is held in escrow, never by a person.",
+    "safe2": "The supplier is paid only after delivery.",
+    "safe3": "If the group does not fill, you get everything back.",
+    "passkeyWhatTitle": "What is a passkey?",
+    "passkeyWhatBody": "It is how your phone unlocks: fingerprint, face or PIN. It replaces passwords and secret words, and it never leaves your phone."
   },
   "explore": {
     "title": "Open group buys",
@@ -440,5 +465,11 @@
     "lead": "Group buys that have finished. Open one to see your goods, refund or report.",
     "empty": "No finished group buys yet.",
     "link": "See past group buys"
+  },
+  "footer": {
+    "tagline": "Buy together. Pay on delivery.",
+    "built": "Built on Stellar",
+    "testnet": "Test version: practice money only, no real payments.",
+    "source": "Open source"
   }
 }

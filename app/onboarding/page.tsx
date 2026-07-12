@@ -4,12 +4,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
 import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
+import { FingerprintIcon, RefundIcon, ShieldIcon, TruckIcon } from '@/components/brand/icons';
 import { api } from '@/lib/api';
 import { useSession } from '@/lib/store';
 import { NETWORK_PASSPHRASE, runAction, type Prepared } from '@/lib/tx';
 import { adoptPasskeyWallet, backupSecret, createWallet, loadWallet, signChallenge, signClassicTx } from '@/lib/wallet';
 
 type Step = 'phone' | 'code' | 'profile' | 'wallet' | 'money' | 'backup' | 'done';
+/** Position shown to the person: account, profile, wallet, money. */
+const STEP_NO: Record<Step, number> = { phone: 1, code: 1, profile: 2, wallet: 3, money: 4, backup: 4, done: 4 };
+const TOTAL_STEPS = 4;
 const TESTNET = process.env.NEXT_PUBLIC_STELLAR_NETWORK !== 'mainnet';
 
 const input = 'h-12 w-full rounded-lg border border-neutral-400 px-3 text-lg';
@@ -123,8 +127,19 @@ function Onboarding() {
   }
 
   return (
-    <div className="space-y-5">
-      <h1 className="text-2xl font-bold">{t('title')}</h1>
+    <div className="page-enter grid gap-8 lg:grid-cols-[1fr_22rem] lg:items-start">
+    <div className="space-y-5 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:p-8">
+      {step !== 'done' && (
+        <div>
+          <p className="text-sm font-semibold text-emerald-800">{t('stepOf', { step: STEP_NO[step], total: TOTAL_STEPS })}</p>
+          <div role="progressbar" aria-valuemin={1} aria-valuemax={TOTAL_STEPS} aria-valuenow={STEP_NO[step]} aria-label={t('stepOf', { step: STEP_NO[step], total: TOTAL_STEPS })} className="mt-2 flex gap-1.5">
+            {Array.from({ length: TOTAL_STEPS }, (_, i) => (
+              <span key={i} className={`h-1.5 flex-1 rounded-full ${i < STEP_NO[step] ? 'bg-emerald-700' : 'bg-emerald-950/10'}`} />
+            ))}
+          </div>
+        </div>
+      )}
+      <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{t('title')}</h1>
       {step === 'phone' && (
         <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); void sendCode(); }}>
           <label htmlFor="phone" className="block font-medium">{t('phoneLabel')}</label>
@@ -191,6 +206,19 @@ function Onboarding() {
         </div>
       )}
       {error !== null && <ErrorExplainer error={error} />}
+    </div>
+    <aside className="space-y-4 rounded-[1.75rem] bg-emerald-950 p-6 text-emerald-50">
+      <h2 className="text-lg font-semibold text-white">{t('safeTitle')}</h2>
+      <ul className="space-y-3 text-sm leading-6">
+        {([[ShieldIcon, t('safe1')], [TruckIcon, t('safe2')], [RefundIcon, t('safe3')]] as const).map(([Icon, text]) => (
+          <li key={text} className="flex gap-3"><span className="mt-0.5 text-emerald-300"><Icon className="size-5" /></span><span>{text}</span></li>
+        ))}
+      </ul>
+      <div className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+        <p className="flex items-center gap-2 font-semibold text-white"><FingerprintIcon className="size-5 text-amber-300" /> {t('passkeyWhatTitle')}</p>
+        <p className="mt-1 text-sm leading-6 text-emerald-50/85">{t('passkeyWhatBody')}</p>
+      </div>
+    </aside>
     </div>
   );
 }

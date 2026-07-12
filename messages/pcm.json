@@ -38,7 +38,7 @@
     "myPools": "My group buys",
     "noPools": "You never join any group buy yet.",
     "readyForPickup": "Ready for pickup",
-    "badge": "Built on Stellar · Made for your market",
+    "badge": "Group buying · Built on Stellar",
     "heroLead": "Buy together.",
     "heroAccent": "Pay when goods reach.",
     "heroBody": "Join traders for your market make una get wholesale price. Your money dey safe until your goods land.",
@@ -49,7 +49,25 @@
     "step2Body": "Join your order with other traders near you, make price come down.",
     "step3Title": "Pay when goods reach",
     "step3Body": "Your money dey safe until the goods reach your pickup point.",
-    "howItWorks": "How e dey work"
+    "howItWorks": "How e dey work",
+    "exampleLabel": "Example: how price dey drop as more traders join",
+    "exampleBadge": "Example group buy",
+    "exampleProduct": "Mama Gold Rice, 50kg bag",
+    "exampleHub": "Pickup: Wuse Market, Gate B",
+    "exampleClosing": "E go close for 2 days",
+    "exampleJoined": "{joined} of {max} bags don join",
+    "exampleNext": "{units} more for {price}",
+    "exampleTier": "From {from} bags",
+    "exampleCaption": "Everybody go pay the lowest price wey the group reach. If you pay pass when you join, the change go come back to you.",
+    "trustTitle": "Your money dey safe for every step",
+    "trustLead": "No person dey hold the cash. Your money dey wait for escrow on Stellar, e go only commot when everything below don happen.",
+    "trust1Title": "E dey safe, no be person hold am",
+    "trust1Body": "Your money dey safe for escrow. Nobody fit take am, even SorobanPool no fit.",
+    "trust2Title": "Supplier go collect after delivery",
+    "trust2Body": "Supplier go collect money only after the goods reach your market and the group confirm.",
+    "trust3Title": "Automatic refund",
+    "trust3Body": "If the group no full, or supplier no deliver, all your money go come back by itself.",
+    "progressLabel": "How far e reach the minimum order"
   },
   "onboarding": {
     "title": "Create your account",
@@ -75,7 +93,14 @@
     "goExplore": "Find group buy",
     "passkeySignIn": "Enter with passkey",
     "passkeyNeeded": "This phone or browser no support passkey. Open this page for Chrome or Safari for phone wey dey up to date.",
-    "walletDeviceFallback": "Na for testing only: keep key for this device instead"
+    "walletDeviceFallback": "Na for testing only: keep key for this device instead",
+    "stepOf": "Step {step} of {total}",
+    "safeTitle": "Why e dey safe",
+    "safe1": "Your money dey for escrow, no be person hold am.",
+    "safe2": "Supplier go collect money only after delivery.",
+    "safe3": "If the group no full, all your money go come back.",
+    "passkeyWhatTitle": "Wetin be passkey?",
+    "passkeyWhatBody": "Na how your phone dey open: fingerprint, face or PIN. E replace password and secret words, and e no dey ever comot your phone."
   },
   "explore": {
     "title": "Group buys wey dey open",
@@ -440,5 +465,11 @@
     "lead": "Group buys wey don finish. Open one to see your goods, refund or report.",
     "empty": "No group buy don finish yet.",
     "link": "See group buys wey don pass"
+  },
+  "footer": {
+    "tagline": "Buy together. Pay when goods reach.",
+    "built": "Built on Stellar",
+    "testnet": "Test version: na practice money, no real payment.",
+    "source": "Open source"
   }
 }
