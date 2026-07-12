@@ -423,5 +423,22 @@
     "unavailable": "Naira payments are not available yet.",
     "simulate": "Test only: pretend the bank transfer arrived",
     "estimate": "You will get about {usd} USD at today's rate. The rate when your transfer arrives is final."
+  },
+  "states": {
+    "Open": "Joining",
+    "Filled": "Filled",
+    "Accepted": "Supplier accepted",
+    "Dispatched": "On the way",
+    "Delivered": "Arrived at hub",
+    "Settled": "Done",
+    "Expired": "Did not fill: money returned",
+    "Failed": "Supplier did not deliver: money returned",
+    "Cancelled": "Cancelled: money returned"
+  },
+  "history": {
+    "title": "History",
+    "lead": "Group buys that have finished. Open one to see your goods, refund or report.",
+    "empty": "No finished group buys yet.",
+    "link": "See past group buys"
   }
 }

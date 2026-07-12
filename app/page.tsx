@@ -10,6 +10,8 @@ const STEPS = [1, 2, 3] as const;
 
 export default function Home() {
   const t = useTranslations('home');
+  const states = useTranslations('states');
+  const historyT = useTranslations('history');
   const status = useSession((s) => s.status);
   const mine = useQuery({ queryKey: ['pools', 'mine'], queryFn: () => api<PoolCard[]>('/pools?mine=true'), enabled: status === 'authed', refetchInterval: 15_000 });
   return (
@@ -70,12 +72,13 @@ export default function Home() {
               <li key={p.id}>
                 <Link href={`/pools/${p.id}`} className="pool-card block min-h-12 rounded-2xl border border-neutral-200 bg-white p-5">
                   <p className="font-semibold">{p.title}</p>
-                  <p className="text-sm text-neutral-700">{p.state}{p.currentUnitPriceNaira ? ` · ₦${p.currentUnitPriceNaira}` : ''}</p>
+                  <p className="text-sm text-neutral-700">{states(p.state)}{p.currentUnitPriceNaira ? ` · ₦${p.currentUnitPriceNaira}` : ''}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <Link href="/explore" className="flex min-h-12 items-center justify-center rounded-xl border border-emerald-800 px-4 font-semibold text-emerald-900">{t('explore')}</Link>
+          <Link href="/history" className="flex min-h-12 items-center justify-center rounded-xl px-4 font-semibold text-emerald-900 underline-offset-4 hover:underline">{historyT('link')}</Link>
         </section>
       )}
     </div>
