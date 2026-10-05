@@ -216,6 +216,10 @@
     "unsafe": {
       "what": "This request looks wrong, so we stopped it.",
       "todo": "Nothing was charged. Try again, and contact support if it keeps happening."
+    },
+    "IMAGE_INVALID": {
+      "what": "That photo could not be read.",
+      "todo": "Take the photo again or choose a different one."
     }
   },
   "supplier": {

@@ -1,4 +1,5 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
+import sharp from 'sharp';
 import { ADMIN_PHONE, API, act, addVirtualAuthenticator, Client, makeActor, setArbiter, throttle, uploadFile, waitFor } from './helpers';
 import { onboardViaUi } from './ui';
 
@@ -6,7 +7,7 @@ import { onboardViaUi } from './ui';
  * M4: a supplier applies, activates and publishes an offer through the UI; a trader joins and reports a problem through
  * the UI; an arbiter decides it through the UI. Each step is confirmed against the chain/API.
  */
-const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg==', 'base64');
+let PNG: Buffer; // a real, decodable image (product photos are decoded and resized by the server)
 
 test.describe.serial('supplier portal and disputes', () => {
   test.setTimeout(20 * 60_000);
@@ -19,6 +20,7 @@ test.describe.serial('supplier portal and disputes', () => {
   const pool = async () => (await fetch(`${API}/p/${slug}`)).json() as Promise<{ id: string; state: string; totalUnits: number }>;
 
   test.beforeAll(async ({ browser }) => {
+    PNG = await sharp({ create: { width: 64, height: 48, channels: 3, background: '#a52' } }).png().toBuffer();
     ctx = {} as typeof ctx; page = {} as typeof page;
     for (const k of ['supplier', 'trader', 'arbiter'] as const) {
       ctx[k] = await browser.newContext({ viewport: { width: 393, height: 851 }, isMobile: true, hasTouch: true });

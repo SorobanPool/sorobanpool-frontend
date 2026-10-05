@@ -216,6 +216,10 @@
     "unsafe": {
       "what": "This request no look correct, so we stop am.",
       "todo": "Dem no collect anything. Try again, and talk to support if e continue."
+    },
+    "IMAGE_INVALID": {
+      "what": "We no fit read that photo.",
+      "todo": "Take the photo again or choose another one."
     }
   },
   "supplier": {
