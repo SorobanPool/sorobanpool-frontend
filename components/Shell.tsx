@@ -7,6 +7,9 @@ import { APP_NAME } from '@/lib/config';
 import { ServiceWorker } from '@/components/ServiceWorker';
 import { useSession } from '@/lib/store';
 
+// A stable reference: a selector that returns a fresh [] each time makes Zustand 5 re-render forever.
+const NO_ROLES: string[] = [];
+
 const baseTabs = [
   { href: '/', key: 'home' },
   { href: '/explore', key: 'explore' },
@@ -18,7 +21,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const t = useTranslations('nav');
   const path = usePathname();
   const status = useSession((s) => s.status);
-  const roles = useSession((s) => s.me?.roles ?? []);
+  const roles = useSession((s) => s.me?.roles ?? NO_ROLES);
   // Role tabs appear only for people who have the role, so a trader's bar stays four items wide.
   const tabs = [
     ...baseTabs,
