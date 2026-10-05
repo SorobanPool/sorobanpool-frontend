@@ -74,6 +74,8 @@ export async function api<T = unknown>(path: string, opts: { method?: string; bo
   if (res.status === 401 && opts.auth !== false && (await refresh())) res = await raw(path, init);
   if (res.status === 204) return undefined as T;
   const text = await res.text();
+  // An empty 200 is how the API says "nothing" (e.g. no supplier profile yet): that is null, not an empty object.
+  if (res.ok && !text) return null as T;
   const json = text ? (JSON.parse(text) as Record<string, unknown>) : {};
   if (!res.ok) {
     throw new ApiError(res.status, String(json.error ?? 'HTTP'), String(json.message ?? res.statusText), typeof json.contractCode === 'number' ? json.contractCode : undefined, json.issues as ApiError['issues']);

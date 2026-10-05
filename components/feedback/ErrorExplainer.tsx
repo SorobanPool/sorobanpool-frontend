@@ -11,7 +11,7 @@ export function explain(e: unknown): { what: string; todo: string } {
   if (e instanceof UserDeclined) return { what: 'errors.declined.what', todo: 'errors.declined.todo' };
   if (e instanceof ApiError) {
     if (e.contractCode !== undefined) return errorKeys(e.contractCode);
-    const specific = ['OTP_WRONG', 'OTP_EXPIRED', 'OTP_LOCKED', 'OTP_RATE_LIMITED', 'INVALID_PHONE', 'FEE_TOO_HIGH'];
+    const specific = ['OTP_WRONG', 'OTP_EXPIRED', 'OTP_LOCKED', 'OTP_RATE_LIMITED', 'INVALID_PHONE', 'FEE_TOO_HIGH', 'IMAGE_INVALID'];
     if (specific.includes(e.code)) return { what: `errors.${e.code}.what`, todo: `errors.${e.code}.todo` };
   }
   if (e instanceof TypeError) return { what: 'errors.network.what', todo: 'errors.network.todo' };
