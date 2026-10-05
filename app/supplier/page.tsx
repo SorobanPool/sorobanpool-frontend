@@ -9,7 +9,7 @@ import { useConfirm } from '@/components/ConfirmDialog';
 import { Countdown } from '@/components/pool/Countdown';
 import { api } from '@/lib/api';
 import { useRequireAuth } from '@/lib/auth';
-import { formatNaira, formatUsdc, stroopsToNairaCeil, toStroops } from '@/lib/format';
+import { formatNaira, stroopsToNairaCeil } from '@/lib/format';
 import { useSession } from '@/lib/store';
 import { runAction, type Prepared } from '@/lib/tx';
 import type { PoolCard, PoolView, SupplierProfile } from '@/lib/types';
@@ -50,7 +50,7 @@ function ApplyForm({ onDone }: { onDone: () => void }) {
 }
 
 /** A group buy waiting on this supplier: accept or decline within the window, then mark dispatched. */
-function PoolRow({ card }: { card: PoolCard }) {
+export function PoolRow({ card }: { card: PoolCard }) {
   const t = useTranslations('supplier');
   const qc = useQueryClient();
   const { ask, dialog } = useConfirm();
@@ -71,7 +71,8 @@ function PoolRow({ card }: { card: PoolCard }) {
       setBusy(false);
     }
   }
-  const payout = p?.finalUnitPriceUsdc && p.ngnPerUsd ? formatNaira(stroopsToNairaCeil((BigInt(p.totalUnits) * toStroops(formatUsdc(p.finalUnitPriceUsdc)) * 985n) / 1000n, p.ngnPerUsd)) : null;
+  // finalUnitPriceUsdc is whole stroops. After the 1.5% platform fee the supplier gets about 98.5% of units x price.
+  const payout = p?.finalUnitPriceUsdc && p.ngnPerUsd ? formatNaira(stroopsToNairaCeil((BigInt(p.totalUnits) * BigInt(p.finalUnitPriceUsdc) * 985n) / 1000n, p.ngnPerUsd)) : null;
   const btn = 'min-h-12 flex-1 rounded-xl font-bold disabled:opacity-60';
   return (
     <li className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="supplier-pool">
