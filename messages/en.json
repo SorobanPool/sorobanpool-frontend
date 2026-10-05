@@ -5,7 +5,8 @@
     "organize": "Organize",
     "settings": "Settings",
     "supplier": "Supplier",
-    "arbiter": "Arbiter"
+    "arbiter": "Arbiter",
+    "admin": "Admin"
   },
   "common": {
     "loading": "Loading…",
@@ -272,7 +273,8 @@
       "publish": "Publish offer",
       "published": "Your offer is live.",
       "fxBlocked": "Exchange rates are not available right now, so offers cannot be published. Try again shortly."
-    }
+    },
+    "statementLink": "Payout statement"
   },
   "dispute": {
     "report": "Report a problem",
@@ -316,5 +318,78 @@
     "resolved": "Decision recorded.",
     "needWallet": "Bind your wallet in onboarding first.",
     "notArbiter": "This area is for arbiters. Ask support if you should have access."
+  },
+  "admin": {
+    "title": "Admin console",
+    "notAdmin": "This area is for administrators.",
+    "tabs": {
+      "risk": "Risk",
+      "suppliers": "Suppliers",
+      "users": "Users",
+      "offers": "Offers",
+      "disputes": "Disputes",
+      "audit": "Audit log"
+    },
+    "risk": {
+      "gmv": "Delivered value (GMV)",
+      "escrow": "Held in escrow",
+      "failure": "Failure rate (7 days)",
+      "disputeRate": "Dispute rate (7 days)",
+      "flags": "Needs attention",
+      "noFlags": "Nothing flagged.",
+      "suppliers": "Suppliers by dispute rate",
+      "pairs": "Organizer and supplier pairs",
+      "pools": "{count} pools"
+    },
+    "kyb": {
+      "pending": "Applications waiting",
+      "none": "No applications waiting.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "needsActivation": "The supplier must activate their account first.",
+      "done": "Decision saved."
+    },
+    "users": {
+      "search": "Search by phone or name",
+      "grant": "Make {role}",
+      "attest": "Verify as {role}",
+      "saved": "Saved.",
+      "roles": "Roles"
+    },
+    "offers": {
+      "takedown": "Take down",
+      "takenDown": "Taken down (new pools only)"
+    },
+    "empty": "Nothing here yet."
+  },
+  "statement": {
+    "title": "Payout statement",
+    "empty": "No settled pools yet.",
+    "pool": "Pool",
+    "product": "Product",
+    "settled": "Settled",
+    "units": "Units",
+    "gross": "Gross",
+    "fees": "Fees",
+    "net": "You received",
+    "total": "Total",
+    "csv": "Download CSV",
+    "note": "Amounts are in US dollars (USDC).",
+    "link": "Payout statement"
+  },
+  "naira": {
+    "method": "How do you want to pay?",
+    "dollar": "Dollar balance",
+    "naira": "Naira bank transfer",
+    "start": "Get bank details",
+    "send": "Send {amount} to this account",
+    "bank": "Bank",
+    "account": "Account",
+    "reference": "Use this reference",
+    "waiting": "Waiting for your transfer…",
+    "received": "Transfer received. Now approve your payment.",
+    "unavailable": "Naira payments are not available yet.",
+    "simulate": "Test only: pretend the bank transfer arrived",
+    "estimate": "You will get about {usd} USD at today's rate. The rate when your transfer arrives is final."
   }
 }

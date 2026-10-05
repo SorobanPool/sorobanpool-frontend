@@ -27,6 +27,7 @@ export function Shell({ children }: { children: ReactNode }) {
     ...baseTabs,
     ...(roles.includes('SUPPLIER') ? [{ href: '/supplier', key: 'supplier' } as const] : []),
     ...(roles.includes('ARBITER') ? [{ href: '/arbiter', key: 'arbiter' } as const] : []),
+    ...(roles.includes('ADMIN') ? [{ href: '/admin', key: 'admin' } as const] : []),
     { href: '/settings', key: 'settings' } as const,
   ];
   return (
