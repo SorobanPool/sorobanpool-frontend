@@ -314,6 +314,7 @@
     "preview": "Buyer gets {buyer}. Supplier gets {supplier}.",
     "resolve": "Record decision",
     "resolved": "Decision recorded.",
-    "needWallet": "Bind your wallet in onboarding first."
+    "needWallet": "Bind your wallet in onboarding first.",
+    "notArbiter": "This area is for arbiters. Ask support if you should have access."
   }
 }

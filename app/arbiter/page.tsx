@@ -15,7 +15,7 @@ export default function ArbiterQueue() {
   const isArbiter = useSession((s) => s.me?.roles.includes('ARBITER'));
   const q = useQuery({ queryKey: ['arbiter', 'queue'], queryFn: () => api<DisputeView[]>('/arbiter/queue'), enabled: ready && !!isArbiter, refetchInterval: 15_000 });
   if (!ready) return <p>{common('loading')}</p>;
-  if (!isArbiter) return <p role="status" className="rounded-xl bg-amber-50 p-4">{t('needWallet')}</p>;
+  if (!isArbiter) return <p role="status" className="rounded-xl bg-amber-50 p-4">{t('notArbiter')}</p>;
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">{t('title')}</h1>
