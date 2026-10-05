@@ -8,6 +8,7 @@ import { api } from '@/lib/api';
 import { formatNaira, formatUsdc, stroopsToNairaCeil } from '@/lib/format';
 import { payPreview } from '@/lib/pricing';
 import { runAction, type Prepared } from '@/lib/tx';
+import { NairaDeposit } from './NairaDeposit';
 import type { PoolView } from '@/lib/types';
 
 /** Units -> "most you pay now" and "refund if more people join" -> approve on the device. */
@@ -23,6 +24,9 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<unknown>(null);
+  const [method, setMethod] = useState<'USDC' | 'NGN'>('USDC');
+  const [nairaPaid, setNairaPaid] = useState(false);
+  const naira2 = useTranslations('naira');
   const tiers = pool.tiersUsdc.map((x) => ({ minUnits: x.minUnits, unitPrice: BigInt(x.unitPrice) }));
   const clamped = Math.max(1, Math.min(units, Math.max(room, 1)));
   const p = tiers.length ? payPreview(tiers, pool.totalUnits, clamped) : null;
@@ -71,7 +75,18 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
           <p>≈ {formatUsdc(p.maxNow)} USD (fixed price)</p>
         </details>
       )}
-      <button type="button" disabled={busy || done} onClick={() => void pay()} className="min-h-12 w-full rounded-xl bg-emerald-800 text-lg font-bold text-white disabled:opacity-60">{busy ? t('paying') : t('payNow')}</button>
+      {pool.ngnPerUsd && (
+        <fieldset className="space-y-1">
+          <legend className="text-sm font-medium">{naira2('method')}</legend>
+          {(['USDC', 'NGN'] as const).map((m) => (
+            <label key={m} className="flex min-h-12 items-center gap-3 rounded-lg border border-neutral-300 px-3">
+              <input type="radio" name="method" checked={method === m} onChange={() => setMethod(m)} />{m === 'USDC' ? naira2('dollar') : naira2('naira')}
+            </label>
+          ))}
+        </fieldset>
+      )}
+      {method === 'NGN' && p && pool.ngnPerUsd && <NairaDeposit maxNow={p.maxNow} ngnPerUsd={pool.ngnPerUsd} onReady={() => setNairaPaid(true)} />}
+      <button type="button" disabled={busy || done || (method === 'NGN' && !nairaPaid)} onClick={() => void pay()} className="min-h-12 w-full rounded-xl bg-emerald-800 text-lg font-bold text-white disabled:opacity-60">{busy ? t('paying') : t('payNow')}</button>
       {done && <p role="status" className="rounded-lg bg-emerald-50 p-3 font-semibold text-emerald-900">{t('joined')}</p>}
       {error !== null && <ErrorExplainer error={error} onRetry={() => void pay()} />}
       {dialog}

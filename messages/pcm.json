@@ -5,7 +5,8 @@
     "organize": "Organize",
     "settings": "Settings",
     "supplier": "Supplier",
-    "arbiter": "Arbiter"
+    "arbiter": "Arbiter",
+    "admin": "Admin"
   },
   "common": {
     "loading": "E dey load…",
@@ -272,7 +273,8 @@
       "publish": "Publish offer",
       "published": "Your offer don live.",
       "fxBlocked": "Exchange rate no dey available now, so you no fit publish offer. Try again soon."
-    }
+    },
+    "statementLink": "Payout statement"
   },
   "dispute": {
     "report": "Report problem",
@@ -316,5 +318,78 @@
     "resolved": "Dem don record the decision.",
     "needWallet": "Bind your wallet for onboarding first.",
     "notArbiter": "This place na for arbiters. Ask support if you suppose get access."
+  },
+  "admin": {
+    "title": "Admin console",
+    "notAdmin": "This place na for administrators.",
+    "tabs": {
+      "risk": "Risk",
+      "suppliers": "Suppliers",
+      "users": "Users",
+      "offers": "Offers",
+      "disputes": "Disputes",
+      "audit": "Audit log"
+    },
+    "risk": {
+      "gmv": "Value wey dem deliver (GMV)",
+      "escrow": "Wey dey escrow",
+      "failure": "Failure rate (7 days)",
+      "disputeRate": "Dispute rate (7 days)",
+      "flags": "Need attention",
+      "noFlags": "Nothing dey flag.",
+      "suppliers": "Suppliers by dispute rate",
+      "pairs": "Organizer and supplier pairs",
+      "pools": "{count} pools"
+    },
+    "kyb": {
+      "pending": "Applications wey dey wait",
+      "none": "No application dey wait.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "needsActivation": "The supplier must activate dem account first.",
+      "done": "Decision don save."
+    },
+    "users": {
+      "search": "Search by phone or name",
+      "grant": "Make {role}",
+      "attest": "Verify as {role}",
+      "saved": "E don save.",
+      "roles": "Roles"
+    },
+    "offers": {
+      "takedown": "Take down",
+      "takenDown": "Dem don take am down (new pools only)"
+    },
+    "empty": "Nothing dey here yet."
+  },
+  "statement": {
+    "title": "Payout statement",
+    "empty": "No settled pool yet.",
+    "pool": "Pool",
+    "product": "Product",
+    "settled": "Settled",
+    "units": "Units",
+    "gross": "Gross",
+    "fees": "Fees",
+    "net": "Wetin you receive",
+    "total": "Total",
+    "csv": "Download CSV",
+    "note": "Amount dey for US dollars (USDC).",
+    "link": "Payout statement"
+  },
+  "naira": {
+    "method": "How you wan pay?",
+    "dollar": "Dollar balance",
+    "naira": "Naira bank transfer",
+    "start": "Get bank details",
+    "send": "Send {amount} to this account",
+    "bank": "Bank",
+    "account": "Account",
+    "reference": "Use this reference",
+    "waiting": "We dey wait for your transfer…",
+    "received": "Transfer don reach. Now approve your payment.",
+    "unavailable": "Naira payment no dey available yet.",
+    "simulate": "Test only: act like say bank transfer reach",
+    "estimate": "You go get about {usd} USD for today rate. The rate when your transfer reach na the final one."
   }
 }
