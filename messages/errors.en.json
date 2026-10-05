@@ -1,0 +1,318 @@
+{
+  "100": {
+    "what": "This action is for administrators only.",
+    "todo": "Contact support if you think this is a mistake."
+  },
+  "101": {
+    "what": "Only an administrator or guardian can do this.",
+    "todo": "Contact support."
+  },
+  "102": {
+    "what": "These settings are not valid.",
+    "todo": "Check the values and try again."
+  },
+  "103": {
+    "what": "These settings go beyond the safety limits.",
+    "todo": "Choose lower values."
+  },
+  "104": {
+    "what": "The system is not fully set up yet.",
+    "todo": "Try again later or contact support."
+  },
+  "105": {
+    "what": "No guardian has been set.",
+    "todo": "Contact support."
+  },
+  "200": {
+    "what": "You are already registered for this role.",
+    "todo": "You can continue."
+  },
+  "201": {
+    "what": "You are not registered yet.",
+    "todo": "Finish sign-up first."
+  },
+  "202": {
+    "what": "This verifier is not approved.",
+    "todo": "Contact support."
+  },
+  "203": {
+    "what": "Only an administrator can do this.",
+    "todo": "Contact support."
+  },
+  "204": {
+    "what": "You are not allowed to do this.",
+    "todo": "Contact support if you think this is a mistake."
+  },
+  "205": {
+    "what": "The verification level is not valid.",
+    "todo": "Contact support."
+  },
+  "206": {
+    "what": "Your account status does not allow this.",
+    "todo": "Check your account in Settings or contact support."
+  },
+  "300": {
+    "what": "The system is not ready yet.",
+    "todo": "Try again in a moment."
+  },
+  "301": {
+    "what": "New activity is paused for now. Your money is safe.",
+    "todo": "Try again later."
+  },
+  "302": {
+    "what": "The offer details are not valid for a pool.",
+    "todo": "Check the offer and try again."
+  },
+  "303": {
+    "what": "This kind of product is not allowed yet.",
+    "todo": "Choose a different offer."
+  },
+  "304": {
+    "what": "The organizer or supplier is not verified.",
+    "todo": "Choose a verified organizer or supplier."
+  },
+  "305": {
+    "what": "The closing time is not allowed.",
+    "todo": "Pick a time within 7 days from now."
+  },
+  "306": {
+    "what": "The organizer fee is too high.",
+    "todo": "Choose a lower fee."
+  },
+  "307": {
+    "what": "This pool is bigger than your level allows.",
+    "todo": "Choose a smaller offer or ask support to raise your limit."
+  },
+  "308": {
+    "what": "We could not find this pool.",
+    "todo": "Check the link and try again."
+  },
+  "309": {
+    "what": "This step is not available right now.",
+    "todo": "Refresh the page to see the latest status."
+  },
+  "310": {
+    "what": "This pool has closed for joining.",
+    "todo": "Look for another open pool."
+  },
+  "311": {
+    "what": "It is too early to do this.",
+    "todo": "Wait until the closing time."
+  },
+  "312": {
+    "what": "Choose at least 1 unit.",
+    "todo": "Pick how many units you want."
+  },
+  "313": {
+    "what": "You cannot join this pool.",
+    "todo": "Finish sign-up or choose another pool."
+  },
+  "314": {
+    "what": "This pool is only for members of one market.",
+    "todo": "Choose a pool for your market."
+  },
+  "315": {
+    "what": "That is more units than one person can take from this offer.",
+    "todo": "Choose fewer units."
+  },
+  "316": {
+    "what": "One person cannot take that big a share of the pool.",
+    "todo": "Choose fewer units so others can join."
+  },
+  "317": {
+    "what": "Not enough units are left in this pool.",
+    "todo": "Choose fewer units."
+  },
+  "318": {
+    "what": "This is above the amount your account level allows.",
+    "todo": "Verify your account to raise your limit, or choose fewer units."
+  },
+  "319": {
+    "what": "This pool already has the most members it can take.",
+    "todo": "Look for another pool."
+  },
+  "320": {
+    "what": "You already joined this pool.",
+    "todo": "Use Add more units instead."
+  },
+  "321": {
+    "what": "You have not joined this pool.",
+    "todo": "Join the pool first."
+  },
+  "322": {
+    "what": "It is too close to the closing time to leave.",
+    "todo": "You can stay in the pool; you will get any refund automatically."
+  },
+  "323": {
+    "what": "Leaving would drop the price for everyone, so it is not allowed.",
+    "todo": "Stay in the pool, or ask the organizer."
+  },
+  "324": {
+    "what": "The pool has not reached its minimum yet.",
+    "todo": "Wait for more people to join."
+  },
+  "325": {
+    "what": "Only the organizer can do this.",
+    "todo": "Ask the organizer."
+  },
+  "326": {
+    "what": "Only the supplier can do this.",
+    "todo": "Ask the supplier."
+  },
+  "327": {
+    "what": "Only an administrator can do this.",
+    "todo": "Contact support."
+  },
+  "328": {
+    "what": "This pool can no longer be cancelled.",
+    "todo": "Contact support if you need help."
+  },
+  "329": {
+    "what": "The time to accept this order has passed.",
+    "todo": "Everyone will be refunded automatically."
+  },
+  "330": {
+    "what": "The supplier still has time to accept.",
+    "todo": "Wait until the acceptance time ends."
+  },
+  "331": {
+    "what": "Advance payments are switched off.",
+    "todo": "Accept without an advance."
+  },
+  "332": {
+    "what": "The advance is higher than allowed for your level.",
+    "todo": "Choose a lower advance."
+  },
+  "333": {
+    "what": "The delivery deadline has not passed yet.",
+    "todo": "Wait until the deadline."
+  },
+  "334": {
+    "what": "That count is more than was ordered.",
+    "todo": "Count again and enter the correct number."
+  },
+  "335": {
+    "what": "It is too early for members to confirm delivery on their own.",
+    "todo": "Wait for the organizer, or try later."
+  },
+  "336": {
+    "what": "You already confirmed this.",
+    "todo": "Nothing more to do."
+  },
+  "337": {
+    "what": "Sharing out the goods is still being finished.",
+    "todo": "Try again in a moment."
+  },
+  "338": {
+    "what": "It is too early to pay out.",
+    "todo": "Payment happens after the confirmation time, or when enough members confirm they collected."
+  },
+  "339": {
+    "what": "There is nothing to refund right now.",
+    "todo": "Check your history."
+  },
+  "340": {
+    "what": "This action is not allowed from here.",
+    "todo": "Contact support."
+  },
+  "341": {
+    "what": "That claim is bigger than the value of the goods.",
+    "todo": "Reduce the number of units in your report."
+  },
+  "342": {
+    "what": "The time to report a problem has ended.",
+    "todo": "Contact support if the goods were not delivered."
+  },
+  "343": {
+    "what": "The amount is too large to process.",
+    "todo": "Choose a smaller amount."
+  },
+  "344": {
+    "what": "This pool is not finished yet.",
+    "todo": "Wait until it is complete."
+  },
+  "345": {
+    "what": "The supplier cannot join their own pool.",
+    "todo": "Use a different account."
+  },
+  "400": {
+    "what": "The system is not ready yet.",
+    "todo": "Try again in a moment."
+  },
+  "401": {
+    "what": "Only people in this pool can report a problem.",
+    "todo": "Join the pool first."
+  },
+  "402": {
+    "what": "The number of units in your report is not valid.",
+    "todo": "Enter a number you actually received or ordered."
+  },
+  "403": {
+    "what": "We could not find this report.",
+    "todo": "Check and try again."
+  },
+  "404": {
+    "what": "This report is already settled.",
+    "todo": "Nothing more to do."
+  },
+  "405": {
+    "what": "Only an approved arbiter can decide this.",
+    "todo": "Contact support."
+  },
+  "406": {
+    "what": "You cannot decide a report on a pool you took part in.",
+    "todo": "Pick a different report."
+  },
+  "407": {
+    "what": "The time to decide this report has passed.",
+    "todo": "The refund will happen automatically."
+  },
+  "408": {
+    "what": "The deciding time has not ended yet.",
+    "todo": "Wait until the arbiter's time is over."
+  },
+  "409": {
+    "what": "That decision is not valid.",
+    "todo": "Check the amounts and try again."
+  },
+  "410": {
+    "what": "You have added the most evidence allowed.",
+    "todo": "Remove the least useful items before adding more."
+  },
+  "411": {
+    "what": "The amount is too large to process.",
+    "todo": "Choose a smaller amount."
+  },
+  "500": {
+    "what": "That amount is not valid.",
+    "todo": "Enter an amount above zero."
+  },
+  "501": {
+    "what": "You do not have that much free bond.",
+    "todo": "Choose a smaller amount."
+  },
+  "502": {
+    "what": "This action is not allowed from here.",
+    "todo": "Contact support."
+  },
+  "503": {
+    "what": "The system is not ready yet.",
+    "todo": "Try again in a moment."
+  },
+  "504": {
+    "what": "That release is more than is held.",
+    "todo": "Contact support."
+  },
+  "600": {
+    "what": "This action is not allowed from here.",
+    "todo": "Contact support."
+  },
+  "601": {
+    "what": "This record type is not recognised.",
+    "todo": "Contact support."
+  },
+  "602": {
+    "what": "The system is not ready yet.",
+    "todo": "Try again in a moment."
+  }
+}
