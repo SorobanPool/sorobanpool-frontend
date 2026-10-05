@@ -38,6 +38,7 @@ export interface PoolView {
   maxUnits: number | null;
   members: number;
   ngnPerUsd: number | null;
+  filledAt: string | null;
   progressPct: number;
   currentUnitPriceUsdc: string;
   currentUnitPriceNaira: string | null;
@@ -53,6 +54,7 @@ export interface PoolCard {
   id: string;
   state: PoolState;
   organizer: string;
+  supplier: string;
   shareSlug: string;
   title: string | null;
   unitLabel: string | null;
@@ -62,4 +64,20 @@ export interface PoolCard {
   progressPct: number;
   fillDeadline: string;
   hub: string;
+}
+
+export interface DisputeView {
+  id: string;
+  poolId: string;
+  opener: string;
+  state: 'OPEN' | 'RESOLVED' | 'TIMED_OUT';
+  claimedAmount: string; // USDC decimal string
+  openedAt: string;
+  slaDueAt: string;
+  msToSla?: number;
+}
+
+export interface SupplierProfile {
+  businessName: string;
+  kybStatus: 'PENDING' | 'APPROVED' | 'REJECTED';
 }
