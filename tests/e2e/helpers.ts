@@ -12,6 +12,7 @@ export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export class Client {
   token = '';
   constructor(public phone: string) {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- test helper: callers read untyped JSON fields
   async call<T = any>(path: string, body?: unknown, method?: string): Promise<T> {
     const res = await fetch(`${API}${path}`, {
       method: method ?? (body === undefined ? 'GET' : 'POST'),

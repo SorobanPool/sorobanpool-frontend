@@ -1,5 +1,7 @@
 import { api } from './api';
-import { confirmWithDevice, signAuthEntries, type DeviceCheck } from './wallet';
+import { deployment } from './deployment';
+import { assertSafeAuth } from './verify';
+import { confirmWithDevice, loadWallet, signAuthEntries, type DeviceCheck } from './wallet';
 
 export interface Prepared {
   txXdr: string;
@@ -32,8 +34,14 @@ const idempotencyKey = (): string => `${Date.now().toString(36)}-${crypto.random
 export async function runAction(
   prepare: () => Promise<Prepared>,
   explicitConfirm: () => Promise<boolean>,
+  /** The most this action may send to SorobanPool contracts (stroops), when the screen already showed it. */
+  maxTransfer?: bigint,
 ): Promise<TxOutcome> {
   const prepared = await prepare();
+  const wallet = await loadWallet();
+  if (!wallet) throw new Error('NO_WALLET');
+  // Never sign what the backend sent without checking it is exactly the action the user asked for.
+  assertSafeAuth(prepared.authEntries, { user: wallet.publicKey, contract: prepared.contract, fn: prepared.fn, maxTransfer }, deployment());
   const check: DeviceCheck = await confirmWithDevice();
   if (check === 'denied') throw new UserDeclined();
   if (check === 'unavailable' && !(await explicitConfirm())) throw new UserDeclined();

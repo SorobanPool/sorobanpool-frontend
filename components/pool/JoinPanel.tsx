@@ -35,7 +35,7 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
     setBusy(true);
     setError(null);
     try {
-      await runAction(() => api<Prepared>(`/pools/${pool.id}/${mine > 0 ? 'increase' : 'commit'}/prepare`, { body: { units: clamped } }), ask);
+      await runAction(() => api<Prepared>(`/pools/${pool.id}/${mine > 0 ? 'increase' : 'commit'}/prepare`, { body: { units: clamped } }), ask, p?.maxNow);
       setDone(true);
       await qc.invalidateQueries({ queryKey: ['pool', pool.id] });
     } catch (e) {

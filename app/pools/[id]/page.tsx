@@ -9,7 +9,7 @@ import { JoinPanel } from '@/components/pool/JoinPanel';
 import { PoolSummary } from '@/components/pool/PoolSummary';
 import { PoolTimeline } from '@/components/pool/PoolTimeline';
 import { ShareButton } from '@/components/pool/ShareButton';
-import { api } from '@/lib/api';
+import { api, ApiError } from '@/lib/api';
 import { useRequireAuth } from '@/lib/auth';
 import { runAction, type Prepared } from '@/lib/tx';
 import type { PoolView } from '@/lib/types';
@@ -43,7 +43,11 @@ export default function PoolPage() {
       setDone(kind);
       await qc.invalidateQueries({ queryKey: ['pool', id] });
     } catch (e) {
-      setError(e);
+      // NothingToClaim (339) on a refund means the keeper already paid it out automatically: that is the good outcome.
+      if (kind === 'refund' && e instanceof ApiError && e.contractCode === 339) {
+        setDone('refund');
+        await qc.invalidateQueries({ queryKey: ['pool', id] });
+      } else setError(e);
     } finally {
       setBusy(null);
     }

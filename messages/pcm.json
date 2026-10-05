@@ -210,6 +210,10 @@
     "FEE_TOO_HIGH": {
       "what": "This payment need more fee pass wetin we fit cover.",
       "todo": "Talk to support."
+    },
+    "unsafe": {
+      "what": "This request no look correct, so we stop am.",
+      "todo": "Dem no collect anything. Try again, and talk to support if e continue."
     }
   }
 }
