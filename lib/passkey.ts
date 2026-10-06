@@ -2,6 +2,11 @@ import { browserSupportsWebAuthn, startAuthentication, startRegistration } from 
 import { useSyncExternalStore } from 'react';
 import { api } from './api';
 
+export interface PasskeyInfo {
+  id: string;
+  createdAt: string;
+}
+
 export interface PasskeySession {
   accessToken: string;
   refreshToken: string;
@@ -40,3 +45,6 @@ export const passkeyCancelled = (e: unknown): boolean => (e as { name?: string }
 export function usePasskeySupport(): boolean {
   return useSyncExternalStore(() => () => {}, passkeysSupported, () => false);
 }
+
+export const listPasskeys = (): Promise<PasskeyInfo[]> => api<PasskeyInfo[]>('/auth/passkey');
+export const removePasskey = (id: string): Promise<void> => api(`/auth/passkey/${encodeURIComponent(id)}`, { method: 'DELETE' });

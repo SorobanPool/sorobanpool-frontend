@@ -182,7 +182,9 @@
     "passkeyAdd": "Add passkey for this phone",
     "passkeyHelp": "Next time, use your fingerprint, face or PIN enter instead of SMS code.",
     "passkeyDone": "Passkey don add. You fit use am enter.",
-    "passkeyUnsupported": "This phone no support passkey."
+    "passkeyUnsupported": "This phone no support passkey.",
+    "passkeyAddedOn": "Passkey wey you add {date}",
+    "passkeyRemove": "Remove am"
   },
   "errors": {
     "generic": {

@@ -21,4 +21,11 @@ test('a trader adds a passkey, signs out, and signs back in without an SMS code'
   await page.goto('/settings');
   await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Add a passkey on this phone' })).toBeVisible(); // signed in, not bounced to onboarding
+
+  // The passkey just used to sign in is now listed, and can be removed from this same screen.
+  await expect(page.getByText(/Passkey added/)).toBeVisible();
+  await page.getByRole('button', { name: 'Remove' }).click();
+  await page.getByRole('button', { name: 'Confirm' }).click();
+  await expect(page.getByText(/Passkey added/)).not.toBeVisible();
 });
+
