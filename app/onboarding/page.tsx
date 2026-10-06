@@ -1,4 +1,5 @@
 'use client';
+import { passkeyCancelled, usePasskeySupport, signInWithPasskey, type PasskeySession } from '@/lib/passkey';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
@@ -31,6 +32,7 @@ function Onboarding() {
   const [secret, setSecret] = useState('');
   const [cluster, setCluster] = useState<string | undefined>();
   const [busy, setBusy] = useState(false);
+  const passkeySupport = usePasskeySupport();
   const [error, setError] = useState<unknown>(null);
 
   async function run(fn: () => Promise<void>) {
@@ -51,13 +53,24 @@ function Onboarding() {
     setStep('code');
   });
 
-  const verify = () => run(async () => {
-    const r = await api<{ accessToken: string; refreshToken: string; user: { walletAddress: string | null } }>('/auth/otp/verify', { body: { phone, code }, auth: false });
+  async function afterSignIn(r: PasskeySession) {
     await signedIn(r);
     const local = await loadWallet();
     // Returning user whose wallet is already bound on this device: nothing more to set up.
     if (r.user.walletAddress && local?.publicKey === r.user.walletAddress) return void router.replace(next);
     setStep('profile');
+  }
+
+  const verify = () => run(async () => {
+    await afterSignIn(await api<PasskeySession>('/auth/otp/verify', { body: { phone, code }, auth: false }));
+  });
+
+  const passkeyLogin = () => run(async () => {
+    try {
+      await afterSignIn(await signInWithPasskey());
+    } catch (e) {
+      if (!passkeyCancelled(e)) throw e; // closing the system prompt is not an error
+    }
   });
 
   const saveProfile = () => run(async () => {
@@ -98,6 +111,7 @@ function Onboarding() {
           <input id="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="0803 123 4567" value={phone} onChange={(e) => setPhone(e.target.value)} className={input} />
           <p className="text-sm text-neutral-700">{t('phoneHelp')}</p>
           <button disabled={busy || phone.length < 10} className={primary}>{t('sendCode')}</button>
+          {passkeySupport && <button type="button" onClick={() => void passkeyLogin()} disabled={busy} className="min-h-12 w-full rounded-xl border border-neutral-400 font-semibold">{t('passkeySignIn')}</button>}
         </form>
       )}
       {step === 'code' && (
