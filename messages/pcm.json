@@ -22,7 +22,8 @@
     "members": "{count} member(s)",
     "offline": "You no get network. Na the last thing wey we see dey show.",
     "learnMore": "How e dey work?",
-    "signInFirst": "Abeg sign in first."
+    "signInFirst": "Abeg sign in first.",
+    "error": "Something don spoil. Abeg try again."
   },
   "trust": {
     "message": "Your money dey safe. Supplier go only collect pay after goods don reach. If people no join reach target, we go return all your money back by itself."
@@ -57,7 +58,8 @@
     "testMoneyBody": "This na test version. We go add practice money make you fit try payment.",
     "testMoneyAction": "Add practice money",
     "finished": "Everything don set!",
-    "goExplore": "Find group buy"
+    "goExplore": "Find group buy",
+    "passkeySignIn": "Enter with passkey"
   },
   "explore": {
     "title": "Group buys wey dey open",
@@ -175,7 +177,12 @@
     "backup": "Show my backup",
     "backupWarn": "Anybody wey get this one fit carry your money. No share am.",
     "signOut": "Sign out",
-    "help": "Help"
+    "help": "Help",
+    "passkeyTitle": "Passkey",
+    "passkeyAdd": "Add passkey for this phone",
+    "passkeyHelp": "Next time, use your fingerprint, face or PIN enter instead of SMS code.",
+    "passkeyDone": "Passkey don add. You fit use am enter.",
+    "passkeyUnsupported": "This phone no support passkey."
   },
   "errors": {
     "generic": {
