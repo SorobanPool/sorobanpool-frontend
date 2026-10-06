@@ -19,3 +19,8 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: http://localhost:3000
           NEXT_PUBLIC_DEPLOYMENTS: '{"usdc":"CAAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQC526","contracts":{}}'
+      - name: JS size budget on public pages (Lighthouse, mobile emulation)
+        run: |
+          pnpm exec next start -p 3010 &
+          npx --yes wait-on http://localhost:3010/offline
+          CHROME_PATH="$(which google-chrome)" node scripts/lighthouse-budget.mjs http://localhost:3010 /:170 /onboarding:400 /offline:170
