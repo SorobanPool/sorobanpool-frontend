@@ -5,6 +5,9 @@ import { getLocale } from 'next-intl/server';
 import { Providers } from '@/components/Providers';
 import { Shell } from '@/components/Shell';
 import { APP_NAME, TAGLINE } from '@/lib/config';
+import { Geist } from 'next/font/google';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -13,12 +16,12 @@ export const metadata: Metadata = {
 };
 
 // Light theme by default: it reads best in sunlight on a phone.
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#0b6b3a' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#075e4b' };
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const locale = await getLocale();
   return (
-    <html lang={locale === 'pcm' ? 'en-NG' : 'en'} className="h-full antialiased">
+    <html lang={locale === 'pcm' ? 'en-NG' : 'en'} className={`h-full antialiased ${geist.variable}`}>
       <body className="min-h-full bg-neutral-50">
         <NextIntlClientProvider>
           <Providers>

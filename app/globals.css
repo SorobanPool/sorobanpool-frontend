@@ -1,22 +1,53 @@
 @import "tailwindcss";
 
-/* Light theme by default: it reads best in sunlight on a phone. System fonts keep the first load small. */
 :root {
-  --background: #fafafa;
-  --foreground: #171717;
+  --background: #080b09;
+  --foreground: #f2f5f2;
+  --brand: #075e4b;
+  --brand-dark: #064838;
+  --accent: #e9a33b;
+  --surface: #111714;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans: var(--font-geist), "Geist", system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-feature-settings: "ss01" on;
 }
+
+/* Keep the existing utility-based screens coherent with the dark canvas. */
+.bg-white { background-color: #111714; }
+.bg-neutral-50 { background-color: #0d1210; }
+.bg-neutral-100 { background-color: #17201b; }
+.bg-neutral-200 { background-color: #27352d; }
+.text-neutral-900 { color: #f2f5f2; }
+.text-neutral-700 { color: #c0c9c3; }
+.text-neutral-600 { color: #aab5ad; }
+.text-neutral-500 { color: #8f9b93; }
+.border-neutral-200, .border-neutral-200\/70, .border-neutral-200\/80, .border-neutral-300, .border-neutral-400 { border-color: #29362f; }
+.pool-card { background-color: #111714; }
+
+::selection { background: #a7f3d0; color: #073b30; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.page-enter { animation: rise-in .48s cubic-bezier(.2,.75,.25,1) both; }
+.stagger-in > * { animation: rise-in .42s cubic-bezier(.2,.75,.25,1) both; }
+.stagger-in > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 240ms; }
+a, button, input, select, textarea { transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+a:active, button:active { transform: scale(.985); }
+.pool-card { box-shadow: 0 2px 6px rgb(24 39 32 / 4%), 0 12px 32px rgb(24 39 32 / 3%); }
+.pool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgb(24 39 32 / 7%), 0 20px 42px rgb(24 39 32 / 6%); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 
 /* Big, obvious focus for keyboard and switch users. */
 :focus-visible {
