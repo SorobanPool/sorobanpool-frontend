@@ -6,7 +6,9 @@
     "settings": "Settings",
     "supplier": "Supplier",
     "arbiter": "Arbiter",
-    "admin": "Admin"
+    "admin": "Admin",
+    "main": "Main",
+    "signIn": "Sign in"
   },
   "common": {
     "loading": "E dey load…",
@@ -35,7 +37,19 @@
     "explore": "See group buys wey dey open",
     "myPools": "My group buys",
     "noPools": "You never join any group buy yet.",
-    "readyForPickup": "Ready for pickup"
+    "readyForPickup": "Ready for pickup",
+    "badge": "Built on Stellar · Made for your market",
+    "heroLead": "Buy together.",
+    "heroAccent": "Pay when goods reach.",
+    "heroBody": "Join traders for your market make una get wholesale price. Your money dey safe until your goods land.",
+    "heroCta": "See group buys",
+    "step1Title": "Find better deal",
+    "step1Body": "Pick bulk offer from supplier wey your market fit trust.",
+    "step2Title": "Buy as group",
+    "step2Body": "Join your order with other traders near you, make price come down.",
+    "step3Title": "Pay when goods reach",
+    "step3Body": "Your money dey safe until the goods reach your pickup point.",
+    "howItWorks": "How e dey work"
   },
   "onboarding": {
     "title": "Create your account",
@@ -67,7 +81,13 @@
     "from": "From {price} per unit",
     "minimum": "Minimum {count} units",
     "offers": "Offers",
-    "openPools": "Open pools"
+    "openPools": "Open pools",
+    "eyebrow": "Better price, together",
+    "lead": "Join open order near you make una share wholesale price.",
+    "openCount": "{count} dey open now",
+    "openBadge": "Open to join",
+    "pricePerUnit": "Price for one unit",
+    "filled": "{pct}% don fill"
   },
   "pool": {
     "price": "Price now",

@@ -5,9 +5,6 @@ import { getLocale } from 'next-intl/server';
 import { Providers } from '@/components/Providers';
 import { Shell } from '@/components/Shell';
 import { APP_NAME, TAGLINE } from '@/lib/config';
-import { Geist } from 'next/font/google';
-
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -21,8 +18,8 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const locale = await getLocale();
   return (
-    <html lang={locale === 'pcm' ? 'en-NG' : 'en'} className={`h-full antialiased ${geist.variable}`}>
-      <body className="min-h-full bg-neutral-50">
+    <html lang={locale === 'pcm' ? 'en-NG' : 'en'} className="h-full antialiased">
+      <body className="min-h-full bg-[var(--background)]">
         <NextIntlClientProvider>
           <Providers>
             <Shell>{children}</Shell>
