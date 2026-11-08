@@ -15,3 +15,6 @@ export function timelineStatus(state: PoolState, iCollected: boolean): { step: n
     default: return { step: -1, failed: true };
   }
 }
+
+/** End states: nothing more happens on-chain except refund claims (brief 3.3). */
+export const FINAL_STATES: readonly PoolState[] = ['Settled', 'Expired', 'Failed', 'Cancelled'];

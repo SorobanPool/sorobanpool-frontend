@@ -423,5 +423,22 @@
     "unavailable": "Naira payment no dey available yet.",
     "simulate": "Test only: act like say bank transfer reach",
     "estimate": "You go get about {usd} USD for today rate. The rate when your transfer reach na the final one."
+  },
+  "states": {
+    "Open": "People dey join",
+    "Filled": "E don full",
+    "Accepted": "Supplier don agree",
+    "Dispatched": "E dey come",
+    "Delivered": "E don reach hub",
+    "Settled": "E don finish",
+    "Expired": "E no full: money don return",
+    "Failed": "Supplier no deliver: money don return",
+    "Cancelled": "Dem cancel am: money don return"
+  },
+  "history": {
+    "title": "History",
+    "lead": "Group buys wey don finish. Open one to see your goods, refund or report.",
+    "empty": "No group buy don finish yet.",
+    "link": "See group buys wey don pass"
   }
 }
