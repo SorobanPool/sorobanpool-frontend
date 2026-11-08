@@ -45,7 +45,7 @@
     "lighthouse": "^13.5.0",
     "sharp": "0.35.5",
     "tailwindcss": "^4",
-    "typescript": "^5",
+    "typescript": "^6",
     "vitest": "5.0.3"
   },
   "packageManager": "pnpm@10.33.0"
