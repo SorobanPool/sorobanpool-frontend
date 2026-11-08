@@ -63,7 +63,7 @@
     "marketLabel": "Your market",
     "profile": "A little about you",
     "walletTitle": "Set up your wallet",
-    "walletBody": "We create a secure wallet on this phone. Only you can approve payments, with your fingerprint, face or PIN.",
+    "walletBody": "Your wallet is protected by a passkey on this phone. Only you can approve payments, with your fingerprint, face or PIN. There is no password or secret to write down.",
     "walletCreate": "Create my wallet",
     "walletActivating": "Activating your account…",
     "backupTitle": "Keep a backup",
@@ -73,7 +73,9 @@
     "testMoneyAction": "Add practice money",
     "finished": "You are all set!",
     "goExplore": "Find a group buy",
-    "passkeySignIn": "Sign in with a passkey"
+    "passkeySignIn": "Sign in with a passkey",
+    "passkeyNeeded": "This phone or browser does not support passkeys. Open this page in Chrome or Safari on an up-to-date phone.",
+    "walletDeviceFallback": "Testing only: keep a key on this device instead"
   },
   "explore": {
     "title": "Open group buys",
@@ -204,7 +206,8 @@
     "passkeyDone": "Passkey added. You can use it to sign in.",
     "passkeyUnsupported": "This phone does not support passkeys.",
     "passkeyAddedOn": "Passkey added {date}",
-    "passkeyRemove": "Remove"
+    "passkeyRemove": "Remove",
+    "walletPasskey": "Your wallet is protected by your passkey. There is no secret to write down: on a new phone, sign in with the same passkey."
   },
   "errors": {
     "generic": {

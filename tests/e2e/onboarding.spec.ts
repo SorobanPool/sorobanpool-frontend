@@ -1,7 +1,11 @@
 import { expect, test } from '@playwright/test';
 import { addVirtualAuthenticator, Client, throttle } from './helpers';
 
-/** Flow 5.1: a trader onboards from a phone number to a funded, registered wallet, on a throttled mobile connection. */
+/**
+ * Flow 5.1: a trader onboards from a phone number to a funded, registered passkey wallet, on a throttled mobile
+ * connection. The virtual authenticator stands in for the phone's fingerprint/face; every signature is a real
+ * WebAuthn assertion that the wallet contract verifies on testnet.
+ */
 test('trader onboarding (5.1)', async ({ page, context }) => {
   test.setTimeout(240_000);
   await addVirtualAuthenticator(context, page);
@@ -25,11 +29,10 @@ test('trader onboarding (5.1)', async ({ page, context }) => {
   await expect(page.getByRole('heading', { name: /Get test money/ })).toBeVisible({ timeout: 60_000 });
   await page.getByRole('button', { name: 'Add practice money' }).click();
 
-  // Registration is signed on the device (virtual authenticator approves) and the sponsor pays the fee.
-  await expect(page.getByRole('heading', { name: 'Keep a backup' })).toBeVisible({ timeout: 120_000 });
-  expect(await page.getByTestId('backup-secret').textContent()).toMatch(/^S[A-Z2-7]{55}$/);
-  await page.getByRole('button', { name: 'Done' }).click();
-  await expect(page.getByRole('status')).toContainText('You are all set');
+  // Registration is signed with the passkey (virtual authenticator approves) and the sponsor pays the fee.
+  // There is no backup step: nothing secret exists on the device.
+  await expect(page.getByRole('status')).toContainText('You are all set', { timeout: 120_000 });
+  await expect(page.getByTestId('backup-secret')).toHaveCount(0);
 
   // The backend sees a bound wallet and a profile with a market cluster.
   const token = await page.evaluate(async (p) => {
@@ -41,12 +44,16 @@ test('trader onboarding (5.1)', async ({ page, context }) => {
   const c = new Client(phone);
   c.token = token;
   const me = await c.call('/me');
-  expect(me.walletAddress).toMatch(/^G[A-Z2-7]{55}$/);
+  expect(me.walletAddress).toMatch(/^C[A-Z2-7]{55}$/); // a passkey smart wallet, not a key in the browser
   expect(me.displayName).toBe('Iya Bisi');
   expect((await c.call('/me/profile')).cluster).toBe('wuse_market');
 
-  // Switching to Pidgin changes the copy and persists.
+  // Settings explains there is nothing to back up.
   await page.goto('/settings');
+  await expect(page.getByText(/There is no secret to write down/)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Show my backup' })).toHaveCount(0);
+
+  // Switching to Pidgin changes the copy and persists.
   await page.getByRole('button', { name: 'Pidgin' }).click();
   await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
   await page.goto('/');

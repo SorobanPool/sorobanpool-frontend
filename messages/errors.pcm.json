@@ -283,6 +283,10 @@
     "what": "The amount too big to process.",
     "todo": "Choose smaller amount."
   },
+  "412": {
+    "what": "You don already report problem for this group buy.",
+    "todo": "Add photo or more details to the report wey you don already send."
+  },
   "500": {
     "what": "That amount no correct.",
     "todo": "Put amount wey pass zero."
@@ -314,5 +318,25 @@
   "602": {
     "what": "The system never ready.",
     "todo": "Try again small time."
+  },
+  "700": {
+    "what": "This passkey no connect to your wallet.",
+    "todo": "Use the passkey wey you create when you set up your account."
+  },
+  "701": {
+    "what": "This passkey don already connect to your wallet.",
+    "todo": "Nothing to do: you fit use am already."
+  },
+  "702": {
+    "what": "You no fit remove your only passkey.",
+    "todo": "Add passkey for another phone first, then remove this one."
+  },
+  "703": {
+    "what": "Your wallet don reach the highest number of passkey.",
+    "todo": "Remove passkey wey you no dey use again, then try again."
+  },
+  "704": {
+    "what": "We no fit read this passkey.",
+    "todo": "Try again, or create new passkey for Settings."
   }
 }

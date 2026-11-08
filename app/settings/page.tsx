@@ -7,7 +7,7 @@ import { useConfirm } from '@/components/ConfirmDialog';
 import { useRequireAuth } from '@/lib/auth';
 import { useSession } from '@/lib/store';
 import { listPasskeys, passkeyCancelled, removePasskey, usePasskeySupport, registerPasskey } from '@/lib/passkey';
-import { backupSecret, confirmWithDevice } from '@/lib/wallet';
+import { backupSecret, confirmWithDevice, loadWallet } from '@/lib/wallet';
 
 export default function Settings() {
   const t = useTranslations('settings');
@@ -22,6 +22,7 @@ export default function Settings() {
   const { ask, dialog } = useConfirm();
   const qc = useQueryClient();
   const passkeyList = useQuery({ queryKey: ['passkeys'], queryFn: listPasskeys, enabled: ready && passkeySupport });
+  const wallet = useQuery({ queryKey: ['wallet', 'local'], queryFn: loadWallet, enabled: ready });
 
   function setLocale(l: 'en' | 'pcm') {
     document.cookie = `locale=${l}; path=/; max-age=31536000; samesite=lax`;
@@ -61,8 +62,14 @@ export default function Settings() {
       </section>
       <section aria-labelledby="wallet-h" className="space-y-2">
         <h2 id="wallet-h" className="font-semibold">{t('wallet')}</h2>
-        <button onClick={() => void showBackup()} className={btn}>{t('backup')}</button>
-        {secret && (<><p className="text-sm text-red-800">{t('backupWarn')}</p><code className="block break-all rounded-lg bg-neutral-100 p-3 text-sm">{secret}</code></>)}
+        {wallet.data?.kind === 'passkey' ? (
+          <p className="text-sm text-neutral-700">{t('walletPasskey')}</p>
+        ) : wallet.data ? (
+          <>
+            <button onClick={() => void showBackup()} className={btn}>{t('backup')}</button>
+            {secret && (<><p className="text-sm text-red-800">{t('backupWarn')}</p><code className="block break-all rounded-lg bg-neutral-100 p-3 text-sm">{secret}</code></>)}
+          </>
+        ) : null}
       </section>
       <section aria-labelledby="passkey-h" className="space-y-2">
         <h2 id="passkey-h" className="font-semibold">{t('passkeyTitle')}</h2>

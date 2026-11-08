@@ -1,5 +1,5 @@
 'use client';
-import { passkeyCancelled, usePasskeySupport, signInWithPasskey, type PasskeySession } from '@/lib/passkey';
+import { createPasskeyWallet, passkeyCancelled, usePasskeySupport, signInWithPasskey, type PasskeySession } from '@/lib/passkey';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
@@ -7,7 +7,7 @@ import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
 import { api } from '@/lib/api';
 import { useSession } from '@/lib/store';
 import { NETWORK_PASSPHRASE, runAction, type Prepared } from '@/lib/tx';
-import { backupSecret, createWallet, loadWallet, signChallenge, signClassicTx } from '@/lib/wallet';
+import { adoptPasskeyWallet, backupSecret, createWallet, loadWallet, signChallenge, signClassicTx } from '@/lib/wallet';
 
 type Step = 'phone' | 'code' | 'profile' | 'wallet' | 'money' | 'backup' | 'done';
 const TESTNET = process.env.NEXT_PUBLIC_STELLAR_NETWORK !== 'mainnet';
@@ -55,9 +55,16 @@ function Onboarding() {
 
   async function afterSignIn(r: PasskeySession) {
     await signedIn(r);
+    const bound = r.user.walletAddress;
+    // A passkey wallet needs nothing from this device but the passkey itself, so it works on any phone at once.
+    if (bound?.startsWith('C')) {
+      await adoptPasskeyWallet(bound);
+      await reload();
+      return void router.replace(next);
+    }
     const local = await loadWallet();
-    // Returning user whose wallet is already bound on this device: nothing more to set up.
-    if (r.user.walletAddress && local?.publicKey === r.user.walletAddress) return void router.replace(next);
+    // Returning user whose device wallet is already on this device: nothing more to set up.
+    if (bound && local?.publicKey === bound) return void router.replace(next);
     setStep('profile');
   }
 
@@ -81,23 +88,36 @@ function Onboarding() {
   });
 
   const setupWallet = () => run(async () => {
-    const wallet = (await loadWallet()) ?? (await createWallet());
-    const ch = await api<{ challenge: string }>('/wallets/challenge');
-    await api('/wallets', { body: { address: wallet.publicKey, signature: await signChallenge(ch.challenge) } });
+    try {
+      await createPasskeyWallet();
+    } catch (e) {
+      if (passkeyCancelled(e)) return; // the person closed the prompt; they can try again
+      throw e;
+    }
     await reload();
     if (TESTNET) return setStep('money');
     await register();
   });
 
+  // Testnet only, for browsers without passkeys: a key kept on this device, with a backup to write down.
+  const setupDeviceWallet = () => run(async () => {
+    const wallet = (await loadWallet()) ?? (await createWallet());
+    const ch = await api<{ challenge: string }>('/wallets/challenge');
+    await api('/wallets', { body: { address: wallet.publicKey, signature: await signChallenge(ch.challenge) } });
+    await reload();
+    setStep('money');
+  });
+
   const addTestMoney = () => run(async () => {
-    const s = await api<{ trustlineXdr: string }>('/dev/faucet/start', { body: {} });
-    await api('/dev/faucet/finish', { body: { signedXdr: await signClassicTx(s.trustlineXdr, NETWORK_PASSPHRASE) } });
+    const s = await api<{ trustlineXdr?: string; added?: string }>('/dev/faucet/start', { body: {} });
+    if (s.trustlineXdr) await api('/dev/faucet/finish', { body: { signedXdr: await signClassicTx(s.trustlineXdr, NETWORK_PASSPHRASE) } });
     await register();
   });
 
   async function register() {
     // Registration moves no money, so it never needs the extra explicit confirm.
     await runAction(() => api<Prepared>('/registry/register/prepare', { body: { role: 'Trader', cluster } }), async () => true);
+    if ((await loadWallet())?.kind === 'passkey') return setStep('done'); // nothing to back up
     setSecret(await backupSecret());
     setStep('backup');
   }
@@ -139,7 +159,14 @@ function Onboarding() {
         <div className="space-y-3">
           <h2 className="text-lg font-semibold">{t('walletTitle')}</h2>
           <p className="text-neutral-700">{t('walletBody')}</p>
-          <button disabled={busy} onClick={() => void setupWallet()} className={primary}>{busy ? t('walletActivating') : t('walletCreate')}</button>
+          {passkeySupport ? (
+            <button disabled={busy} onClick={() => void setupWallet()} className={primary}>{busy ? t('walletActivating') : t('walletCreate')}</button>
+          ) : (
+            <p role="alert" className="rounded-xl bg-amber-50 p-4 text-amber-900">{t('passkeyNeeded')}</p>
+          )}
+          {TESTNET && (
+            <button disabled={busy} onClick={() => void setupDeviceWallet()} className="min-h-12 w-full rounded-xl border border-neutral-400 font-semibold">{t('walletDeviceFallback')}</button>
+          )}
         </div>
       )}
       {step === 'money' && (

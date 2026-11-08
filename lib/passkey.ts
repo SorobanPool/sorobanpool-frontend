@@ -21,11 +21,25 @@ export const passkeysSupported = (): boolean => {
   }
 };
 
-/** Adds a passkey to the signed-in account (the person must already be signed in by SMS code). */
-export async function registerPasskey(): Promise<void> {
+/** Adds a passkey to the signed-in account (the person must already be signed in by SMS code). Returns its id. */
+export async function registerPasskey(): Promise<string> {
   const { challengeId, options } = await api<{ challengeId: string; options: Parameters<typeof startRegistration>[0]['optionsJSON'] }>('/auth/passkey/register/options', { body: {} });
   const response = await startRegistration({ optionsJSON: options });
-  await api('/auth/passkey/register/verify', { body: { challengeId, response } });
+  const r = await api<{ passkeyId: string }>('/auth/passkey/register/verify', { body: { challengeId, response } });
+  return r.passkeyId;
+}
+
+/**
+ * Creates the person's wallet: a new passkey on this phone, then a smart-wallet contract it controls (deployed and
+ * paid for by SorobanPool; contracts ADR 0006). There is no secret to write down: the passkey is the key, and a
+ * synced passkey keeps working on a new phone.
+ */
+export async function createPasskeyWallet(): Promise<string> {
+  const passkeyId = await registerPasskey();
+  const { walletAddress } = await api<{ walletAddress: string }>('/wallets/passkey', { body: { passkeyId } });
+  const { adoptPasskeyWallet } = await import('./wallet');
+  await adoptPasskeyWallet(walletAddress);
+  return walletAddress;
 }
 
 /** Signs in with a passkey the device offers; no phone number or SMS needed. */
