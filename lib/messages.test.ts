@@ -28,3 +28,24 @@ describe('i18n completeness', () => {
     }
   });
 });
+
+
+const BANNED = ['seed phrase', 'secret phrase', 'private key', 'mnemonic', 'gas', 'wallet address', 'blockchain', 'smart contract', 'transaction hash'];
+// Info sheets may name these terms on purpose. Keep the list short and say why in docs/ux-writing.md.
+const ALLOWLIST = new Set<string>([]);
+
+describe('plain-language copy', () => {
+  for (const [lang, m] of [['en', en], ['pcm', pcm]] as const) {
+    it(`has no banned crypto terms in ${lang}`, () => {
+      const hits: string[] = [];
+      for (const k of keys(m)) {
+        if (ALLOWLIST.has(k)) continue;
+        const v = String(k.split('.').reduce<unknown>((o, p) => (o as Record<string, unknown>)[p], m));
+        for (const term of BANNED) {
+          if (new RegExp(`\\b${term}\\b`, 'i').test(v)) hits.push(`${lang}:${k} contains "${term}"`);
+        }
+      }
+      expect(hits).toEqual([]);
+    });
+  }
+});
