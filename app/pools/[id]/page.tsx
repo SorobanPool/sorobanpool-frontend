@@ -12,6 +12,7 @@ import { PoolSummary } from '@/components/pool/PoolSummary';
 import { ReportProblem } from '@/components/dispute/ReportProblem';
 import { PoolTimeline } from '@/components/pool/PoolTimeline';
 import { ShareButton } from '@/components/pool/ShareButton';
+import { PickupCard } from '@/components/pool/PickupCard';
 import { api, ApiError } from '@/lib/api';
 import { useRequireAuth } from '@/lib/auth';
 import { runAction, type Prepared } from '@/lib/tx';
@@ -66,6 +67,8 @@ export default function PoolPage() {
 
   const canCollect = member && (pool.state === 'Delivered' || pool.state === 'Settled') && !mine?.pickedUp;
   const canRefund = member && FINAL.includes(pool.state);
+  const showPickupCard = member && pool.state === 'Delivered' && pool.hubAddress;
+  
   return (
     <div className="space-y-5">
       <PoolSummary pool={pool} />
@@ -75,6 +78,17 @@ export default function PoolPage() {
           <p>{common('unitsCount', { count: mine!.units })}</p>
           <div className="mt-3"><PoolTimeline state={pool.state} iCollected={!!mine?.pickedUp} /></div>
         </section>
+      )}
+      {showPickupCard && (
+        <PickupCard
+          hubAddress={pool.hubAddress!}
+          hubContact={pool.hubContact}
+          pickupWindowStart={pool.pickupWindowStart || ''}
+          pickupWindowEnd={pool.pickupWindowEnd || ''}
+          allocatedUnits={pool.receivedUnits !== null ? Math.min(mine!.units, pool.receivedUnits) : mine!.units}
+          onConfirm={async () => act('pickup')}
+          confirmed={!!mine?.pickedUp}
+        />
       )}
       <JoinPanel pool={pool} />
       {canCollect && (
