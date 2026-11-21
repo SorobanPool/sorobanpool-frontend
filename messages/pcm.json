@@ -430,6 +430,17 @@
     "arbiterNote": "Arbiter note",
     "outcomeDetail": "Outcome details"
   },
+  "pickup": {
+    "title": "How to collect your goods",
+    "location": "Where to collect",
+    "contact": "Contact",
+    "openMaps": "Open for Maps",
+    "window": "Pickup Time",
+    "units": "Your Units",
+    "confirmButton": "I don collect my goods",
+    "confirming": "We dey confirm…",
+    "confirmed": "✓ Dem don confirm say you collect"
+  },
   "arbiter": {
   "hashLabel": "Note fingerprint (SHA-256)",
   "copyHash": "Copy",

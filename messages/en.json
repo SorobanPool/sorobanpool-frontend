@@ -532,6 +532,17 @@
     "arbiterNote": "Arbiter's note",
     "outcomeDetail": "Outcome details"
   },
+  "pickup": {
+    "title": "Pickup Instructions",
+    "location": "Pickup Location",
+    "contact": "Contact",
+    "openMaps": "Open in Maps",
+    "window": "Pickup Window",
+    "units": "Your Allocated Units",
+    "confirmButton": "I've collected my goods",
+    "confirming": "Confirming…",
+    "confirmed": "✓ Collection confirmed"
+  },
   "arbiter": {
     "hashLabel": "Note fingerprint (SHA-256)",
     "copyHash": "Copy",
