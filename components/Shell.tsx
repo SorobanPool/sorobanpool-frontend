@@ -42,6 +42,7 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto flex min-h-dvh max-w-6xl flex-col bg-[var(--background)] text-neutral-900">
       <ServiceWorker />
+      <a href="#main" className="sr-only focus:not-sr-only focus:z-30 absolute top-0 left-0 bg-emerald-900 text-white px-4 py-2 font-semibold rounded-b-lg">{t('skipToContent')}</a>
       <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-neutral-200/80 bg-white/90 px-5 backdrop-blur-xl md:px-10">
         <Link href="/"><Logo /></Link>
         <div className="hidden items-center gap-1 md:flex">
@@ -59,7 +60,7 @@ export function Shell({ children }: { children: ReactNode }) {
           </Link>
         )}
       </header>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-10 pt-7 md:px-10 md:pb-14 md:pt-10">{children}</main>
+      <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 pb-10 pt-7 md:px-10 md:pb-14 md:pt-10">{children}</main>
       <footer className="mx-auto w-full max-w-6xl px-4 pb-28 pt-2 text-sm text-neutral-700 md:px-10 md:pb-10">
         <div className="flex flex-col gap-2 border-t border-neutral-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p><span className="font-semibold text-emerald-950">{f('tagline')}</span> <span aria-hidden="true">·</span> {f('built')}</p>

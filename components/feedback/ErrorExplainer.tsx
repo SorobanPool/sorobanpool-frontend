@@ -23,7 +23,7 @@ export function ErrorExplainer({ error, onRetry }: { error: unknown; onRetry?: (
   const t = useTranslations();
   const { what, todo } = explain(error);
   return (
-    <div role="alert" className="rounded-xl border border-red-300 bg-red-50 p-4 text-red-900">
+    <div role="alert" aria-live="assertive" aria-atomic="true" className="rounded-xl border border-red-300 bg-red-50 p-4 text-red-900">
       <p className="font-semibold">{t(what)}</p>
       <p className="mt-1 text-sm">{t(todo)}</p>
       {onRetry && <button type="button" onClick={onRetry} className="mt-3 min-h-12 rounded-lg border border-red-700 px-4 font-semibold">{t('common.retry')}</button>}
