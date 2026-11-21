@@ -1,7 +1,7 @@
 'use client';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
 import { useConfirm } from '@/components/ConfirmDialog';
 import { api } from '@/lib/api';
@@ -29,19 +29,11 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
   const [error, setError] = useState<unknown>(null);
   const [method, setMethod] = useState<'USDC' | 'NGN'>('USDC');
   const [nairaPaid, setNairaPaid] = useState(false);
-  const doneRef = useRef<HTMLParagraphElement>(null);
-  const payBtnRef = useRef<HTMLButtonElement>(null);
   const naira2 = useTranslations('naira');
   const tiers = pool.tiersUsdc.map((x) => ({ minUnits: x.minUnits, unitPrice: BigInt(x.unitPrice) }));
   const clamped = Math.max(1, Math.min(units, Math.max(room, 1)));
   const p = tiers.length ? payPreview(tiers, pool.totalUnits, clamped) : null;
   const naira = (s: bigint) => (pool.ngnPerUsd ? formatNaira(stroopsToNairaCeil(s, pool.ngnPerUsd)) : '—');
-
-  useEffect(() => {
-    if (done) {
-      doneRef.current?.focus();
-    }
-  }, [done]);
 
   if (pool.state !== 'Open') return null;
   if (room === 0) return null;
@@ -92,7 +84,7 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
       )}
       {p && (
         <details className="text-xs text-neutral-700">
-          <summary className="min-h-12 content-center font-medium cursor-pointer rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800">{common('learnMore')}</summary>
+          <summary className="min-h-12 content-center font-medium">{common('learnMore')}</summary>
           <p>≈ {formatUsdc(p.maxNow)} USD (fixed price)</p>
         </details>
       )}
@@ -100,40 +92,15 @@ export function JoinPanel({ pool }: { pool: PoolView }) {
         <fieldset className="space-y-1">
           <legend className="text-sm font-medium">{naira2('method')}</legend>
           {(['USDC', 'NGN'] as const).map((m) => (
-            <label key={m} className="flex min-h-12 items-center gap-3 rounded-lg border border-neutral-300 px-3 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-emerald-800">
-              <input
-                type="radio"
-                name="method"
-                checked={method === m}
-                onChange={() => setMethod(m)}
-                className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800"
-              />
-              {m === 'USDC' ? naira2('dollar') : naira2('naira')}
+            <label key={m} className="flex min-h-12 items-center gap-3 rounded-lg border border-neutral-300 px-3">
+              <input type="radio" name="method" checked={method === m} onChange={() => setMethod(m)} />{m === 'USDC' ? naira2('dollar') : naira2('naira')}
             </label>
           ))}
         </fieldset>
       )}
       {method === 'NGN' && p && pool.ngnPerUsd && <NairaDeposit maxNow={p.maxNow} ngnPerUsd={pool.ngnPerUsd} onReady={() => setNairaPaid(true)} />}
-      <FailureExplainer />
-      <button
-        type="button"
-        ref={payBtnRef}
-        disabled={busy || done || (method === 'NGN' && !nairaPaid)}
-        onClick={() => void pay()}
-        className="min-h-12 w-full rounded-xl bg-emerald-800 text-lg font-bold text-white disabled:opacity-60 hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800"
-      >
-        {busy ? t('paying') : t('payNow')}
-      </button>
-      {done && (
-        <p
-          role="status"
-          ref={doneRef}
-          tabIndex={-1}
-          className="rounded-lg bg-emerald-50 p-3 font-semibold text-emerald-900 focus-visible:outline-none"
-        >
-          {t('joined')}
-        </p>
-      )}
+      <button type="button" disabled={busy || done || (method === 'NGN' && !nairaPaid)} onClick={() => void pay()} className="min-h-12 w-full rounded-xl bg-emerald-800 text-lg font-bold text-white disabled:opacity-60">{busy ? t('paying') : t('payNow')}</button>
+      {done && <p role="status" aria-live="polite" aria-atomic="true" className="rounded-lg bg-emerald-50 p-3 font-semibold text-emerald-900">{t('joined')}</p>}
       {error !== null && <ErrorExplainer error={error} onRetry={() => void pay()} />}
       {dialog}
     </section>
