@@ -127,3 +127,38 @@ button:active {
 
 /* The green focus ring is only 2.3:1 on the dark green hero, so use a light ring on dark surfaces. */
 .surface-dark :focus-visible { outline-color: #fde68a; }
+
+/*
+ * Support for large text and zoom (200% zoom or text enlargement).
+ * Prevent horizontal scrolling at small viewports and ensure controls remain accessible.
+ */
+@media (min-width: 0px) and (max-width: 720px) {
+  /* Allow the layout to reflow at high zoom levels */
+  html {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+  
+  /* Prevent overflow on main content areas */
+  main {
+    overflow-x: hidden;
+    word-break: break-word;
+  }
+  
+  /* Ensure fixed bottom bars don't obscure content and allow scrolling beneath them */
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* At very small widths with zoom/enlargement, adjust spacing and sizing */
+@media (max-width: 360px) {
+  main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  button, a[role="button"], input, select, textarea {
+    font-size: 16px; /* Prevent zoom on iOS input focus */
+  }
+}
