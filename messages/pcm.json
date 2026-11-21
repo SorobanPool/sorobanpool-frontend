@@ -174,7 +174,20 @@
     "pickupReadyShort": "Your goods don ready. Organizer go tell you how many units you go collect.",
     "approved": "Payment don approve.",
     "perUnitLabel": "per unit",
-    "nextBreakShort": "{count} more units and price go drop"
+    "nextBreakShort": "{count} more units and price go drop",
+    "tierReached": "Better price don unlock!",
+    "newPrice": "New price",
+    "savingsNow": "You dey save {amount} per unit",
+    "failureExplainer": {
+      "title": "Wetin go happen if…",
+      "notEnoughPeople": "People no reach",
+      "notEnoughAnswer": "If the group no reach minimum before deadline, everybody go collect full refund by itself. Nobody go lose anything.",
+      "supplierNoShow": "Supplier no deliver",
+      "supplierNoShowAnswer": "Your money go dey for escrow until dem confirm delivery. If supplier no deliver, you go collect everything back.",
+      "shortDelivery": "Some things no reach",
+      "shortDeliveryAnswer": "You fit report problem within 48 hours. Arbiter go check your evidence and decide. If e correct, you go collect refund for the units wey no reach.",
+      "learnMoreDisputes": "Learn more about disputes"
+    }
   },
   "organize": {
     "title": "Organize group buy",
@@ -282,6 +295,18 @@
   },
   "supplier": {
     "title": "Supplier portal",
+    "reputation": "Supplier reputation",
+    "whatIsThis": "Wetin this one mean?",
+    "settledPools": "{count} pool(s) wey don complete",
+    "disputeRate": "dispute rate",
+    "tierS0Label": "New supplier",
+    "tierS0Explain": "This supplier new for SorobanPool and dey build dem track record.",
+    "tierS1Label": "Established supplier",
+    "tierS1Explain": "This supplier don complete many pools with good feedback.",
+    "tierS2Label": "Trusted supplier",
+    "tierS2Explain": "This supplier get strong track record with small disputes and high ratings.",
+    "tierS3Label": "Premium supplier",
+    "tierS3Explain": "This supplier get exceptional performance with very small disputes and excellent ratings.",
     "applyIntro": "Tell us about your business. We dey verify every supplier before offers go live.",
     "business": "Business name",
     "cac": "CAC registration number",

@@ -174,7 +174,20 @@
     "pickupReadyShort": "Your goods are ready. The organizer will tell you how many units you get.",
     "approved": "Payment approved.",
     "perUnitLabel": "per unit",
-    "nextBreakShort": "{count} more units and the price drops"
+    "nextBreakShort": "{count} more units and the price drops",
+    "tierReached": "Better price unlocked!",
+    "newPrice": "New price",
+    "savingsNow": "You're saving {amount} per unit",
+    "failureExplainer": {
+      "title": "What happens if…",
+      "notEnoughPeople": "Not enough people join",
+      "notEnoughAnswer": "If the group doesn't reach the minimum by the deadline, everyone gets a full refund automatically. No one loses anything.",
+      "supplierNoShow": "Supplier doesn't deliver",
+      "supplierNoShowAnswer": "Your money stays in escrow until delivery is confirmed. If the supplier doesn't deliver, you get everything back.",
+      "shortDelivery": "Some items are missing",
+      "shortDeliveryAnswer": "You can report a problem within 48 hours. An arbiter reviews your evidence and decides. If upheld, you get a refund for the affected units.",
+      "learnMoreDisputes": "Learn more about disputes"
+    }
   },
   "organize": {
     "title": "Organize a group buy",
@@ -282,6 +295,18 @@
   },
   "supplier": {
     "title": "Supplier portal",
+    "reputation": "Supplier reputation",
+    "whatIsThis": "What does this mean?",
+    "settledPools": "{count, plural, one {completed pool} other {completed pools}}",
+    "disputeRate": "dispute rate",
+    "tierS0Label": "New supplier",
+    "tierS0Explain": "This supplier is new to SorobanPool and building their track record.",
+    "tierS1Label": "Established supplier",
+    "tierS1Explain": "This supplier has completed multiple pools with good feedback.",
+    "tierS2Label": "Trusted supplier",
+    "tierS2Explain": "This supplier has a strong track record with low disputes and high ratings.",
+    "tierS3Label": "Premium supplier",
+    "tierS3Explain": "This supplier has exceptional performance with minimal disputes and excellent ratings.",
     "applyIntro": "Tell us about your business. We verify every supplier before offers go live.",
     "business": "Business name",
     "cac": "CAC registration number",

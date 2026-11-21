@@ -29,6 +29,9 @@ export interface PoolView {
   offerId: string;
   organizer: string;
   supplier: string;
+  supplierTier?: 'S0' | 'S1' | 'S2' | 'S3' | null;
+  supplierSettledPools?: number | null;
+  supplierDisputeRate?: number | null;
   hub: { address: string; contact: string };
   pickupWindow: { from?: string; to?: string };
   fillDeadline: string;
@@ -37,11 +40,14 @@ export interface PoolView {
   moq: number | null;
   maxUnits: number | null;
   members: number;
+  membersList?: Array<{ displayName?: string | null; optedIn?: boolean }> | null;
   ngnPerUsd: number | null;
   filledAt: string | null;
   progressPct: number;
   currentUnitPriceUsdc: string;
   currentUnitPriceNaira: string | null;
+  previousUnitPriceNaira?: string | null;
+  currentTierLevel?: number;
   nextBreak: { unitsToGo: number; unitPriceUsdc: string } | null;
   tiersUsdc: Tier[];
   finalUnitPriceUsdc: string | null;
