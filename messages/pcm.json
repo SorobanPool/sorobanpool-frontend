@@ -104,7 +104,13 @@
     "safe2": "Supplier go collect money only after delivery.",
     "safe3": "If the group no full, all your money go come back.",
     "passkeyWhatTitle": "Wetin be passkey?",
-    "passkeyWhatBody": "Na how your phone dey open: fingerprint, face or PIN. E replace password and secret words, and e no dey ever comot your phone."
+    "passkeyWhatBody": "Na how your phone dey open: fingerprint, face or PIN. E replace password and secret words, and e no dey ever comot your phone.",
+    "termsTitle": "Accept our terms",
+    "termsBody": "To continue, abeg read and accept our Terms of Service and Privacy Policy.",
+    "termsCheckbox": "I don read and I agree to the {terms} and {privacy}",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "acceptTerms": "Accept and continue"
   },
   "explore": {
     "title": "Group buys wey dey open",
@@ -603,5 +609,41 @@
     "a9": "If you dey use passkey wallet, sign in with the same passkey for your new phone. If you dey use device wallet (testnet only), you go need your backup secret to recover your money.",
     "q10": "I fit cancel after I join?",
     "a10": "No. Once you join, your commitment dey binding. If the pool no work or supplier no deliver, you go collect refund. If you receive damaged or wrong goods, you fit file dispute."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "version": "Version {version}",
+    "effectiveDate": "Effective Date: November 2026",
+    "section1Title": "1. Say You Agree",
+    "section1Body": "When you use SorobanPool, you agree to these Terms. If you no agree, you no fit use the service.",
+    "section2Title": "2. How the Service Dey Work",
+    "section2Body": "SorobanPool dey allow traders join group buying. Your money dey for escrow on Stellar blockchain and dem go release am only when the terms of each pool don meet. We no dey hold your money ourselves.",
+    "section3Title": "3. Wetin You Suppose Do",
+    "section3Body": "Na you go keep your wallet safe. You agree to give correct information and to use the service only for lawful things. You no suppose try to manipulate prices, collude with other people, or do fraud.",
+    "section4Title": "4. Refunds and Disputes",
+    "section4Body": "If pool no full or supplier no deliver, you go collect automatic refund. If you receive damaged or wrong goods, you fit file dispute within 48 hours. Arbiter go review the evidence and make decision.",
+    "section5Title": "5. Our Liability",
+    "section5Body": "SorobanPool dey provide the platform but we no dey guarantee the quality of goods, how suppliers go behave, or wetin go happen for any transaction. We no dey responsible for losses beyond the amounts wey dey for escrow for your transactions.",
+    "section6Title": "6. Termination",
+    "section6Body": "We fit suspend or stop your access if you break these terms or do anything wey go harm the platform or other users.",
+    "section7Title": "7. Changes to Terms",
+    "section7Body": "We fit update these terms from time to time. When we do am, we go notify you and ask you make you accept the new version before you fit continue to use the service."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "version": "Version {version}",
+    "effectiveDate": "Effective Date: November 2026",
+    "section1Title": "1. Information Wey We Collect",
+    "section1Body": "We dey collect your phone number for authentication, your name and market location for your profile, and transaction information when you join pools. We no dey collect more information pass wetin we need to provide the service.",
+    "section2Title": "2. How We Dey Use Your Information",
+    "section2Body": "We dey use your information to run the platform, match you with pools for your area, process payments, and resolve disputes. We no dey sell your information to other people.",
+    "section3Title": "3. Data Storage",
+    "section3Body": "Your wallet and private keys dey for your device, protected by your passkey. We no get access to your wallet or the ability to move your money. Transaction records dey for Stellar blockchain, wey everybody fit see.",
+    "section4Title": "4. Sharing Information",
+    "section4Body": "We dey share your display name and general location with other members of pools wey you join. If dispute happen, we go share relevant evidence with the arbiter wey dem assign. We no dey share your phone number with other users.",
+    "section5Title": "5. Your Rights",
+    "section5Body": "You fit request copy of your data or ask us make we delete your account. Note say transactions wey dem record for blockchain, dem no fit delete am.",
+    "section6Title": "6. Changes to This Policy",
+    "section6Body": "We fit update this policy from time to time. When we do am, we go notify you and ask you make you review the changes."
   }
 }

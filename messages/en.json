@@ -104,7 +104,13 @@
     "safe2": "The supplier is paid only after delivery.",
     "safe3": "If the group does not fill, you get everything back.",
     "passkeyWhatTitle": "What is a passkey?",
-    "passkeyWhatBody": "It is how your phone unlocks: fingerprint, face or PIN. It replaces passwords and secret words, and it never leaves your phone."
+    "passkeyWhatBody": "It is how your phone unlocks: fingerprint, face or PIN. It replaces passwords and secret words, and it never leaves your phone.",
+    "termsTitle": "Accept our terms",
+    "termsBody": "To continue, please read and accept our Terms of Service and Privacy Policy.",
+    "termsCheckbox": "I have read and agree to the {terms} and {privacy}",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "acceptTerms": "Accept and continue"
   },
   "explore": {
     "title": "Open group buys",
@@ -716,5 +722,41 @@
     "a9": "If you use a passkey wallet, sign in with the same passkey on your new phone. If you use a device wallet (testnet only), you need your backup secret to recover your money.",
     "q10": "Can I cancel after joining?",
     "a10": "No. Once you join, your commitment is binding. If the pool fails or the supplier doesn't deliver, you get a refund. If you receive damaged or wrong goods, you can file a dispute."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "version": "Version {version}",
+    "effectiveDate": "Effective Date: November 2026",
+    "section1Title": "1. Acceptance of Terms",
+    "section1Body": "By using SorobanPool, you agree to these Terms of Service. If you do not agree, you may not use the service.",
+    "section2Title": "2. How the Service Works",
+    "section2Body": "SorobanPool allows traders to participate in group buying. Your payments are held in escrow on the Stellar blockchain and released only when the terms of each pool are met. We do not hold your money ourselves.",
+    "section3Title": "3. Your Responsibilities",
+    "section3Body": "You are responsible for keeping your wallet secure. You agree to provide accurate information and to use the service only for lawful purposes. You must not attempt to manipulate prices, collude with other parties, or engage in fraudulent activity.",
+    "section4Title": "4. Refunds and Disputes",
+    "section4Body": "If a pool does not fill or a supplier fails to deliver, you receive an automatic refund. If you receive damaged or incorrect goods, you may file a dispute within 48 hours. An arbiter will review the evidence and make a decision.",
+    "section5Title": "5. Limitation of Liability",
+    "section5Body": "SorobanPool provides the platform but does not guarantee the quality of goods, the behavior of suppliers, or the outcome of any transaction. We are not liable for losses beyond the amounts held in escrow for your transactions.",
+    "section6Title": "6. Termination",
+    "section6Body": "We may suspend or terminate your access if you violate these terms or engage in activity that harms the platform or other users.",
+    "section7Title": "7. Changes to Terms",
+    "section7Body": "We may update these terms from time to time. When we do, we will notify you and ask you to accept the new version before you can continue using the service."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "version": "Version {version}",
+    "effectiveDate": "Effective Date: November 2026",
+    "section1Title": "1. Information We Collect",
+    "section1Body": "We collect your phone number for authentication, your name and market location for your profile, and transaction information when you join pools. We do not collect more information than necessary to provide the service.",
+    "section2Title": "2. How We Use Your Information",
+    "section2Body": "We use your information to operate the platform, match you with pools in your area, process payments, and resolve disputes. We do not sell your information to third parties.",
+    "section3Title": "3. Data Storage",
+    "section3Body": "Your wallet and private keys are stored on your device, protected by your passkey. We do not have access to your wallet or the ability to move your money. Transaction records are stored on the Stellar blockchain, which is public.",
+    "section4Title": "4. Sharing Information",
+    "section4Body": "We share your display name and general location with other members of pools you join. In the event of a dispute, we share relevant evidence with the assigned arbiter. We do not share your phone number with other users.",
+    "section5Title": "5. Your Rights",
+    "section5Body": "You may request a copy of your data or ask us to delete your account. Note that transactions recorded on the blockchain cannot be deleted.",
+    "section6Title": "6. Changes to This Policy",
+    "section6Body": "We may update this policy from time to time. When we do, we will notify you and ask you to review the changes."
   }
 }

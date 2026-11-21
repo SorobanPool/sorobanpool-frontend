@@ -1,6 +1,7 @@
 'use client';
 import { createPasskeyWallet, passkeyCancelled, usePasskeySupport, signInWithPasskey, type PasskeySession } from '@/lib/passkey';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
 import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
@@ -10,9 +11,9 @@ import { useSession } from '@/lib/store';
 import { NETWORK_PASSPHRASE, runAction, type Prepared } from '@/lib/tx';
 import { adoptPasskeyWallet, backupSecret, createWallet, loadWallet, signChallenge, signClassicTx } from '@/lib/wallet';
 
-type Step = 'phone' | 'code' | 'profile' | 'wallet' | 'money' | 'backup' | 'done';
+type Step = 'phone' | 'code' | 'terms' | 'profile' | 'wallet' | 'money' | 'backup' | 'done';
 /** Position shown to the person: account, profile, wallet, money. */
-const STEP_NO: Record<Step, number> = { phone: 1, code: 1, profile: 2, wallet: 3, money: 4, backup: 4, done: 4 };
+const STEP_NO: Record<Step, number> = { phone: 1, code: 1, terms: 1, profile: 2, wallet: 3, money: 4, backup: 4, done: 4 };
 const TOTAL_STEPS = 4;
 const TESTNET = process.env.NEXT_PUBLIC_STELLAR_NETWORK !== 'mainnet';
 
@@ -36,6 +37,7 @@ function Onboarding() {
   const [secret, setSecret] = useState('');
   const [cluster, setCluster] = useState<string | undefined>();
   const [busy, setBusy] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const passkeySupport = usePasskeySupport();
   const [error, setError] = useState<unknown>(null);
 
@@ -79,6 +81,11 @@ function Onboarding() {
     const local = await loadWallet();
     // Returning user whose device wallet is already on this device: nothing more to set up.
     if (bound && local?.publicKey === bound) return void router.replace(next);
+    // Check if user has accepted current terms version
+    const termsVersion = r.user.acceptedTermsVersion;
+    if (!termsVersion || termsVersion !== '1.0.0') {
+      return setStep('terms');
+    }
     setStep('profile');
   }
 
@@ -92,6 +99,11 @@ function Onboarding() {
     } catch (e) {
       if (!passkeyCancelled(e)) throw e; // closing the system prompt is not an error
     }
+  });
+
+  const acceptTerms = () => run(async () => {
+    await api('/me/terms', { method: 'POST', body: { version: '1.0.0' } });
+    setStep('profile');
   });
 
   const saveProfile = () => run(async () => {
@@ -164,6 +176,37 @@ function Onboarding() {
           <label htmlFor="code" className="block font-medium">{t('codeLabel')}</label>
           <input id="code" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))} className={`${input} tracking-widest`} />
           <button disabled={busy || code.length !== 6} className={primary}>{t('verify')}</button>
+        </form>
+      )}
+      {step === 'terms' && (
+        <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); void acceptTerms(); }}>
+          <h2 className="text-lg font-semibold">{t('termsTitle')}</h2>
+          <p className="text-neutral-700">{t('termsBody')}</p>
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              checked={termsAccepted}
+              onChange={(e) => setTermsAccepted(e.target.checked)}
+              className="mt-1 size-5 rounded border-neutral-400 text-emerald-700 focus:ring-2 focus:ring-emerald-600"
+            />
+            <span className="text-sm text-neutral-800">
+              {t.rich('termsCheckbox', {
+                terms: (chunks) => (
+                  <Link href="/terms" target="_blank" className="font-semibold text-emerald-700 hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+                privacy: (chunks) => (
+                  <Link href="/privacy" target="_blank" className="font-semibold text-emerald-700 hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </span>
+          </label>
+          <button disabled={busy || !termsAccepted} className={primary}>
+            {t('acceptTerms')}
+          </button>
         </form>
       )}
       {step === 'profile' && (
