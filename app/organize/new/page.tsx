@@ -23,6 +23,7 @@ export default function NewPool() {
   const { ready } = useRequireAuth();
   const { ask, dialog } = useConfirm();
   const offers = useQuery({ queryKey: ['offers'], queryFn: () => api<OfferView[]>('/offers', { auth: false }), enabled: ready });
+  const profile = useQuery({ queryKey: ['me-profile'], queryFn: () => api<{ cluster: string | null }>('/me/profile'), enabled: ready });
   const [step, setStep] = useState(1);
   const [offerId, setOfferId] = useState('');
   // Clock reads happen once, in lazy initialisers: reading Date.now() during render is impure.
@@ -86,7 +87,8 @@ export default function NewPool() {
   const validHub = address.trim().length >= 5 && validPhone && validWindow;
   const feeValue = Number(feePct);
   const validFee = feePct.trim() !== '' && Number.isFinite(feeValue) && feeValue >= 0 && feeValue <= MAX_ORGANIZER_FEE_PCT;
-  const canNext = (step === 1 && !!offerId) || (step === 2 && !!deadline) || (step === 3 && validHub) || (step === 4 && validFee);
+  const marketEligible = Boolean(profile.data?.cluster);
+  const canNext = (step === 1 && !!offerId) || (step === 2 && !!deadline) || (step === 3 && validHub) || (step === 4 && validFee && (!clusterOnly || marketEligible));
   return (
     <div className="space-y-5">
       <h1 className="text-2xl font-bold">{t('title')}</h1>
@@ -115,7 +117,9 @@ export default function NewPool() {
         <div className="space-y-3">
           <label htmlFor="fee" className="block font-medium">{t('feeLabel')}</label><input id="fee" inputMode="decimal" value={feePct} onChange={(e) => setFeePct(e.target.value.replace(/[^\d.]/g, '').slice(0, 5))} className={input} />
           <p className="text-sm text-neutral-700">{t('feeHelp')}</p><p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-900" role="note">Organizer fee is disclosed to members at checkout and is capped at {MAX_ORGANIZER_FEE_PCT}%.</p>{!validFee && <p role="alert" className="text-red-700">Fee must be between 0% and 1%.</p>}
-          <label className="flex min-h-12 items-center gap-3"><input type="checkbox" checked={clusterOnly} onChange={(e) => setClusterOnly(e.target.checked)} className="size-5" />{t('restrict')}</label>
+          <label className="flex min-h-12 items-center gap-3"><input aria-describedby="market-only-help" type="checkbox" checked={clusterOnly} onChange={(e) => setClusterOnly(e.target.checked)} className="size-5" />{t('restrict')}</label>
+          <p id="market-only-help" className="rounded-lg bg-sky-50 p-3 text-sm text-sky-900">Market-only group buys are visible only to members of your market. Your market profile is {profile.isLoading ? 'being checked…' : marketEligible ? 'eligible.' : 'not eligible yet; set a market during onboarding first.'}</p>
+          {clusterOnly && !marketEligible && <p role="alert" className="text-sm text-red-700">You need a market profile before creating a market-only group buy.</p>}
         </div>
       )}
       {step === 5 && (
@@ -128,7 +132,7 @@ export default function NewPool() {
       )}
       <div className="flex gap-3">
         {step > 1 && <button type="button" onClick={() => setStep(step - 1)} className="min-h-12 flex-1 rounded-xl border border-neutral-500 font-semibold">{common('back')}</button>}
-        {step < 5 ? <button type="button" disabled={!canNext} onClick={() => setStep(step + 1)} className={`${primary} flex-1`}>{common('next')}</button> : <button type="button" disabled={busy || !validHub || !validFee || !offerId} onClick={() => void create()} className={`${primary} flex-1`}>{busy ? t('creating') : t('create')}</button>}
+        {step < 5 ? <button type="button" disabled={!canNext} onClick={() => setStep(step + 1)} className={`${primary} flex-1`}>{common('next')}</button> : <button type="button" disabled={busy || !validHub || !validFee || !offerId || (clusterOnly && !marketEligible)} onClick={() => void create()} className={`${primary} flex-1`}>{busy ? t('creating') : t('create')}</button>}
       </div>
       {error !== null && <ErrorExplainer error={error} />}
       {dialog}

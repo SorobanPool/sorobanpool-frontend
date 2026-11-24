@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { formatNaira } from '@/lib/format';
+import { formatNaira, formatUsdNumber } from '@/lib/format';
+import { validateOfferTiers } from '@/lib/offer-tiers';
 import { useRouter } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import { createOffer } from '@/lib/api';
@@ -29,6 +30,7 @@ function OfferPreviewCard({
   maxPerMember,
   leadTimeHours,
   validDays,
+  ngnPerUsd,
 }: {
   title: string;
   brand: string;
@@ -41,6 +43,7 @@ function OfferPreviewCard({
   maxPerMember: number;
   leadTimeHours: number;
   validDays: number;
+  ngnPerUsd: number;
 }) {
   const t = useTranslations('supplier.offer');
   const locale = useLocale();
@@ -81,6 +84,7 @@ function OfferPreviewCard({
             <div className="text-right">
               <p className="text-xs text-indigo-100">{t('preview.priceFrom')}</p>
               <p className="text-2xl font-bold text-white">{formatNaira(lowestTier, locale)}</p>
+              <p className="text-xs text-indigo-100">≈ {formatUsdNumber(lowestTier / ngnPerUsd, locale)} (estimated)</p>
               <p className="text-xs text-indigo-100">/{unitLabel || t('preview.unit')}</p>
             </div>
           )}
@@ -116,7 +120,7 @@ function OfferPreviewCard({
                         {tier.minUnits}+
                       </td>
                       <td className="px-4 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
-                        {formatNaira(tier.priceNaira, locale)}
+                        <>{formatNaira(tier.priceNaira, locale)}<span className="block text-xs font-normal text-gray-500">≈ {formatUsdNumber(tier.priceNaira / ngnPerUsd, locale)}</span></>
                       </td>
                     </tr>
                   ))}
@@ -194,6 +198,8 @@ export default function NewOfferPage() {
   const [validDays, setValidDays] = useState(30);
   const [tiers, setTiers] = useState<TierRow[]>([{ minUnits: 1, priceNaira: 0 }]);
   const [deliveryAreas, setDeliveryAreas] = useState<SelectedArea[]>([]);
+  const ngnPerUsd = Number(process.env.NEXT_PUBLIC_NGN_PER_USD ?? 1500);
+  const tierValidation = validateOfferTiers(tiers);
 
   if (!auth) return null;
 
@@ -213,6 +219,11 @@ export default function NewOfferPage() {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+    if (!tierValidation.valid) {
+      setError(tierValidation.errors.join(' '));
+      setSubmitting(false);
+      return;
+    }
     try {
       await createOffer({
         title,
@@ -270,6 +281,7 @@ export default function NewOfferPage() {
           maxPerMember={maxPerMember}
           leadTimeHours={leadTimeHours}
           validDays={validDays}
+          ngnPerUsd={ngnPerUsd}
         />
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -357,6 +369,7 @@ export default function NewOfferPage() {
                 )}
               </div>
             ))}
+            {!tierValidation.valid && <div role="alert" className="space-y-1 rounded-md bg-red-50 p-3 text-sm text-red-700">{tierValidation.errors.map((message) => <p key={message}>{message}</p>)}</div>}
             <button
               type="button"
               onClick={addTier}
@@ -429,7 +442,7 @@ export default function NewOfferPage() {
             </button>
             <button
               type="submit"
-              disabled={submitting}
+              disabled={submitting || !tierValidation.valid}
               className="rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-50"
             >
               {submitting ? t('publishing') : t('publishButton')}
