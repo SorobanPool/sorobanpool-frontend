@@ -23,7 +23,7 @@ jobs:
           ANALYZE: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
       - name: Upload bundle analysis report
         if: github.event_name == 'pull_request' && !cancelled()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bundle-analysis
           path: .next/analyze
